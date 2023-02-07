@@ -1,0 +1,27 @@
+[
+  {
+    "model": "holdmytableapi.user_style",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "style": 1
+    }
+  },
+  {
+    "model": "holdmytableapi.user_style",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "style": 2
+    }
+  },
+  {
+    "model": "holdmytableapi.user_style",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "style": 3
+    }
+  }
+
+]

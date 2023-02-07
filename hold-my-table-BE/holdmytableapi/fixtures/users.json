@@ -1,0 +1,14 @@
+[
+  {
+    "model": "holdmytableapi.user",
+    "pk": 1,
+    "fields": {
+      "uid": "Ilw5eFRVNqTA3g0nEd1O8M3bRA52",
+      "first_name": "Justin",
+      "last_name": "Ferwerda",
+      "email": "justin.ferwerda@gmail.com",
+      "phone": "(630) 935-8941",
+      "profile_image_url": "https://lh3.googleusercontent.com/a/AEdFTp4uFO_Owrli40k10kKbwykjLCxnao_tN7IH679U2g=s96-c"
+    }
+  }
+]

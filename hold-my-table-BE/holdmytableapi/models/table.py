@@ -10,6 +10,6 @@ class Table(models.Model):
     capacity = models.IntegerField()
     shape = models.CharField(max_length=25)
     is_reserved = models.BooleanField()
-    x_coord = models.CharField(max_length=25)
-    y_coord = models.CharField(max_length=25)
+    x_coord = models.FloatField()
+    y_coord = models.FloatField()
     reservable = models.BooleanField()

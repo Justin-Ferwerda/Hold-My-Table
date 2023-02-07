@@ -1,0 +1,12 @@
+[
+  {
+    "model": "holdmytableapi.reservation",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "table": 1,
+      "date": "2023-2-12 19:30:00",
+      "notes": "peanut allergy"
+    }
+  }
+]
