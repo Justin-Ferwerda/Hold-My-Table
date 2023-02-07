@@ -1,6 +1,6 @@
 [
   {
-    "model": "holdmytableapi.restaurant_image",
+    "model": "holdmytableapi.restaurantimage",
     "pk": 1,
     "fields": {
       "url": "https://www.audreynashville.com/wp-content/uploads/2021/10/210118_Audrey_ED_4613-1170w.jpg",
