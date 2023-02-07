@@ -10,4 +10,11 @@ class User(models.Model):
     email = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     profile_image_url = models.CharField(max_length=100)
+
+    @property
+    def styles(self):
+        """user styles"""
+
+        styles = [style for style in self.user_styles.all()]
+        return styles
     

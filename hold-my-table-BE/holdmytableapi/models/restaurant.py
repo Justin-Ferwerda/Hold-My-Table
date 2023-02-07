@@ -15,3 +15,15 @@ class Restaurant(models.Model):
     banner_pic = models.CharField(max_length=50)
     cancellation_policy = models.CharField(max_length=240)
     style = models.ForeignKey(Style, on_delete=models.CASCADE)
+
+    @property
+    def tables(self):
+        """restaurant tables"""
+        tables = [table for table in self.restaurant_tables.all()]
+        return tables
+
+    @property
+    def images(self):
+        """restaurant images"""
+        images = [image for image in self.restaurant_images.all()]
+        return images
