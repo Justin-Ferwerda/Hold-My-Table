@@ -5,4 +5,4 @@ class Style(models.Model):
     """style attributes"""
 
     label = models.CharField(max_length=50)
-  
+ 

@@ -13,3 +13,15 @@ class Table(models.Model):
     x_coord = models.FloatField()
     y_coord = models.FloatField()
     reservable = models.BooleanField()
+
+    @property
+    def reservations(self):
+        """table reservations"""
+        reservations = [res for res in self.table_reservations.all()]
+        return reservations
+
+    @property
+    def reviews(self):
+        """table reviews"""
+        reviews = [review for review in self.table_reviews.all()]
+        return reviews
