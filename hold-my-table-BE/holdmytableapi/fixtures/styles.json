@@ -1,0 +1,82 @@
+[
+  {
+    "model": "holdmytableapi.style",
+    "pk": 1,
+    "fields": {
+      "label": "American"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 2,
+    "fields": {
+      "label": "Burger"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 3,
+    "fields": {
+      "label": "Sushi"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 4,
+    "fields": {
+      "label": "Mexican"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 5,
+    "fields": {
+      "label": "Chinese"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 6,
+    "fields": {
+      "label": "Deli"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 7,
+    "fields": {
+      "label": "Japanese"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 8,
+    "fields": {
+      "label": "Pizza"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.style",
+    "pk": 9,
+    "fields": {
+      "label": "Cafe"
+    }
+    
+  },
+  {
+    "model": "holdmytableapi.user",
+    "pk": 10,
+    "fields": {
+      "label": "Seafood"
+    }
+    
+  }
+]

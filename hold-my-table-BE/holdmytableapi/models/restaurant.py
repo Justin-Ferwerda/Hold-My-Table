@@ -13,5 +13,5 @@ class Restaurant(models.Model):
     website_url = models.CharField(max_length=50)
     instagram = models.CharField(max_length=50)
     banner_pic = models.CharField(max_length=50)
-    cancellation_policy = models.CharField(max_length=50)
+    cancellation_policy = models.CharField(max_length=240)
     style = models.ForeignKey(Style, on_delete=models.CASCADE)
