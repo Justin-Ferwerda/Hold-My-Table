@@ -17,15 +17,15 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from holdmytableapi.views import check_user, register_user, UserView
+from holdmytableapi.views import check_user, register_user, UserView, RestaurantView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
+router.register(r'restaurants', RestaurantView, 'restaurant')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register', register_user),
     path('checkuser', check_user),
     path('', include(router.urls))
-
 ]
