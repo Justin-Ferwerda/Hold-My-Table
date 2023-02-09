@@ -1,7 +1,7 @@
 """auth view"""
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from holdmytableapi.models import User, UserStyle
+from holdmytableapi.models import User, UserStyle, Style
 from holdmytableapi.serializers import UserSerializer
 from holdmytableapi.helpers import snake_case_to_camel_case_single
 
@@ -42,9 +42,10 @@ def register_user(request):
     )
 
     for style in request.data['styles']:
+        genre = Style.objects.get(pk=style.value)
         user_style = UserStyle(
         user = user,
-        style = style
+        style = genre
         )
 
         user_style.save()
