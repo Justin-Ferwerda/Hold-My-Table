@@ -51,6 +51,8 @@ class RestaurantView(ViewSet):
             cancellation_policy = data['cancellation_policy'],
             style = style,
         )
+        
+        
 
         serializer = RestaurantSerializer(restaurant)
 

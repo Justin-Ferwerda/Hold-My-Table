@@ -1,31 +1,102 @@
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { registerUser } from '../utils/auth'; // Update with path to registerUser
+import { useEffect, useState } from 'react';
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import Select from 'react-select';
+import { registerUser } from '../utils/auth';
+import getStyles from '../utils/data/styleData';
+import updateUserProfile from '../utils/data/userData';
 
-function RegisterForm({ user, updateUser }) {
+function RegisterForm({ user, updateUser, userObj }) {
   const [formData, setFormData] = useState({
-    bio: '',
     uid: user.uid,
   });
+  const [styles, setStyles] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const router = useRouter();
+
+  const styleOptions = styles.map((style) => (
+    {
+      value: style.id,
+      label: style.label,
+    }
+  ));
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const styleHandleChange = (selectedOptions) => {
+    setSelected(selectedOptions.map((option) => option.value));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formData).then(() => updateUser(user.uid));
+    if (userObj?.id) {
+      updateUserProfile({ ...formData, styleIds: selected }).then(() => router.push('/index'));
+    } else {
+      registerUser({ ...formData, styleIds: selected }).then(() => updateUser(user.uid)).then(() => router.push('/index'));
+    }
   };
 
+  const getTheStyles = () => {
+    getStyles().then(setStyles);
+  };
+
+  useEffect(() => {
+    getTheStyles();
+    if (userObj?.id) {
+      setSelected(() => {
+        // eslint-disable-next-line react/prop-types
+        userObj?.styles?.map((style) => (
+          {
+            value: style.id,
+            label: style.label,
+          }
+        ));
+      });
+      setFormData(userObj);
+    }
+  }, [userObj]);
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Gamer Bio</Form.Label>
-        <Form.Control as="textarea" name="bio" required placeholder="Enter your Bio" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
-        <Form.Text className="text-muted">Let other gamers know a little bit about you...</Form.Text>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <>
+      <h1>{userObj?.id ? 'Edit Profile' : 'Tell Us About Yourself'}</h1>
+      <Form onSubmit={handleSubmit}>
+        <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
+          <Form.Control type="text" placeholder="First Name" name="firstName" value={formData.firstName} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Last Name" className="mb-3">
+          <Form.Control type="text" placeholder="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Email" className="mb-3">
+          <Form.Control type="text" placeholder="Email" name="email" value={formData.email} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Phone Number" className="mb-3">
+          <Form.Control type="text" placeholder="Phone Number" name="phone" value={formData.phone} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <Form.Label>Styles</Form.Label>
+        <Select
+          isMulti
+          name="styles"
+          value={selected}
+          options={styleOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={styleHandleChange}
+          required
+        />
+        <Button type="submit" className="submitButton">{userObj?.id ? 'Update' : 'Create'} Profile</Button>
+      </Form>
+    </>
   );
 }
 
@@ -34,6 +105,13 @@ RegisterForm.propTypes = {
     uid: PropTypes.string.isRequired,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
+  userObj: PropTypes.shape({
+    id: PropTypes.number,
+  }),
+};
+
+RegisterForm.defaultProps = {
+  userObj: {},
 };
 
 export default RegisterForm;
