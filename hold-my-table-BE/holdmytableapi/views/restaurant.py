@@ -14,9 +14,7 @@ class RestaurantView(ViewSet):
         """get single restaurant"""
 
         restaurant = Restaurant.objects.get(pk=pk)
-
         serializer = RestaurantSerializer(restaurant)
-
         return Response(snake_case_to_camel_case_single(serializer.data))
 
 
@@ -24,11 +22,8 @@ class RestaurantView(ViewSet):
         """get multiple restaurants"""
 
         restaurants = Restaurant.objects.all()
-
         serializer = RestaurantSerializer(restaurants, many=True)
-
         data = snake_case_to_camel_case_many(serializer.data)
-
         return Response(data)
 
     def create(self, request):
@@ -51,19 +46,14 @@ class RestaurantView(ViewSet):
             cancellation_policy = data['cancellation_policy'],
             style = style,
         )
-        
-        
 
         serializer = RestaurantSerializer(restaurant)
-
         return Response(snake_case_to_camel_case_single(serializer.data))
 
     def update(self, request, pk):
         """handles update request for restaurants"""
         data = camel_case_to_snake_case(request.data)
-
-        style = Style.objects.get(pk=data['style'])
-
+        style = Style.objects.get(pk=data['style']['id'])
         restaurant = Restaurant.objects.get(pk=pk)
 
         restaurant.name = data['name']
@@ -77,9 +67,7 @@ class RestaurantView(ViewSet):
         restaurant.style = style
 
         restaurant.save()
-
         serializer = RestaurantSerializer(restaurant)
-
         return Response(snake_case_to_camel_case_single(serializer.data))
 
     def destroy(self, request, pk):

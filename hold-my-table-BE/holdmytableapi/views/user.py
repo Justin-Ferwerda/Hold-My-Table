@@ -2,7 +2,7 @@
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from holdmytableapi.models import User, UserStyle
+from holdmytableapi.models import User, UserStyle, Style
 from holdmytableapi.serializers import UserSerializer
 from holdmytableapi.helpers import snake_case_to_camel_case_single, snake_case_to_camel_case_many, camel_case_to_snake_case
 
@@ -37,9 +37,10 @@ class UserView(ViewSet):
             style.delete()
 
         for style in request.data['styles']:
+            genre = Style.objects.get(pk=style.value)
             user_style = UserStyle(
             user = user,
-            style = style
+            style = genre
             )
 
             user_style.save()
