@@ -32,14 +32,15 @@ function RegisterForm({ user, updateUser, userObj }) {
 
   const styleHandleChange = (selectedOptions) => {
     setSelected(selectedOptions.map((option) => option.value));
+    console.warn(formData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userObj?.id) {
-      updateUserProfile({ ...formData, styleIds: selected }).then(() => router.push('/index'));
+      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: userObj.profileImageUrl }).then(() => router.push('/index'));
     } else {
-      registerUser({ ...formData, styleIds: selected }).then(() => updateUser(user.uid)).then(() => router.push('/index'));
+      registerUser({ ...formData, styleIds: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/index'));
     }
   };
 
@@ -87,7 +88,6 @@ function RegisterForm({ user, updateUser, userObj }) {
         <Select
           isMulti
           name="styles"
-          value={selected}
           options={styleOptions}
           className="basic-multi-select"
           classNamePrefix="select"
@@ -103,10 +103,14 @@ function RegisterForm({ user, updateUser, userObj }) {
 RegisterForm.propTypes = {
   user: PropTypes.shape({
     uid: PropTypes.string.isRequired,
+    fbUser: PropTypes.shape({
+      photoURL: PropTypes.string,
+    }),
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
   userObj: PropTypes.shape({
     id: PropTypes.number,
+    profileImageUrl: PropTypes.string,
   }),
 };
 
