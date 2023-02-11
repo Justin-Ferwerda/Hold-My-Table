@@ -35,6 +35,9 @@ class Restaurant(models.Model):
         tables = [table for table in self.tables.all()]
         reviews = [review for table in tables for review in table.reviews]
         ratings = [review.rating for review in reviews]
-        avg = sum(ratings)/len(ratings)
-        rating = round(avg*2)/2
-        return rating
+        if len(ratings):
+            avg = sum(ratings)/len(ratings)
+            rating = round(avg*2)/2
+            return rating
+        else:
+            return 0
