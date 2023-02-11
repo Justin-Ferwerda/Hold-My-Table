@@ -22,6 +22,10 @@ class RestaurantView(ViewSet):
         """get multiple restaurants"""
 
         restaurants = Restaurant.objects.all()
+        res_city = request.query_params.get('city', None)
+        if res_city is not None:
+            restaurants = [restaurant for restaurant in restaurants if res_city in restaurant.address]
+
         serializer = RestaurantSerializer(restaurants, many=True)
         data = snake_case_to_camel_case_many(serializer.data)
         return Response(data)
