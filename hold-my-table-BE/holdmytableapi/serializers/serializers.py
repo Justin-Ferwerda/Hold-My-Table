@@ -78,5 +78,6 @@ class RestaurantSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Restaurant
-        fields = ('id', 'name', 'admin_user', 'email', 'phone_number', 'address', 'website_url', 'instagram', 'banner_pic', 'cancellation_policy', 'style', 'tables', 'images')
+        fields = ('id', 'name', 'admin_user', 'email', 'phone_number', 'address', 'website_url', 'instagram', 'banner_pic',
+        'rating', 'cancellation_policy', 'style', 'tables', 'images', 'price_tier')
         depth = 1

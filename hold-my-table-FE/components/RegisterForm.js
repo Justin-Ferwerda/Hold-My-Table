@@ -32,15 +32,14 @@ function RegisterForm({ user, updateUser, userObj }) {
 
   const styleHandleChange = (selectedOptions) => {
     setSelected(selectedOptions.map((option) => option.value));
-    console.warn(formData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userObj?.id) {
-      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: userObj.profileImageUrl }).then(() => router.push('/index'));
+      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: userObj.profileImageUrl }).then(() => router.push('/'));
     } else {
-      registerUser({ ...formData, styleIds: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/index'));
+      registerUser({ ...formData, styleIds: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/'));
     }
   };
 

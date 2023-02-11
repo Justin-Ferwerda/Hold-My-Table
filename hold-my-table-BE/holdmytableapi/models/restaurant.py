@@ -15,11 +15,12 @@ class Restaurant(models.Model):
     banner_pic = models.CharField(max_length=50)
     cancellation_policy = models.CharField(max_length=240)
     style = models.ForeignKey(Style, on_delete=models.CASCADE)
+    price_tier = models.CharField(max_length=4)
 
     @property
     def tables(self):
         """restaurant tables"""
-        tables = [table for table in self.restaurant_tables.all()]
+        tables = [table for table in self.tables.all()]
         return tables
 
     @property
@@ -27,3 +28,13 @@ class Restaurant(models.Model):
         """restaurant images"""
         images = [image for image in self.restaurant_images.all()]
         return images
+
+    @property
+    def rating(self):
+        """gets rating for restaurant"""
+        tables = [table for table in self.tables.all()]
+        reviews = [review for table in tables for review in table.reviews]
+        ratings = [review.rating for review in reviews]
+        avg = sum(ratings)/len(ratings)
+        rating = round(avg*2)/2
+        return rating
