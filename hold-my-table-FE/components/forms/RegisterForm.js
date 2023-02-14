@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import Select from 'react-select';
-import { registerUser } from '../utils/auth';
-import getStyles from '../utils/data/styleData';
-import updateUserProfile from '../utils/data/userData';
+import { registerUser } from '../../utils/auth';
+import getStyles from '../../utils/data/styleData';
+import updateUserProfile from '../../utils/data/userData';
 
 function RegisterForm({ user, updateUser, userObj }) {
   const [formData, setFormData] = useState({

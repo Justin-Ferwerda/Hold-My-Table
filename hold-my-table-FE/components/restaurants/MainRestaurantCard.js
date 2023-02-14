@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import { Rating } from 'react-simple-star-rating';
+import StarRating from '../StarRating';
 
 export default function MainRestaurantCard({ restaurant, src }) {
   return (
@@ -11,20 +11,8 @@ export default function MainRestaurantCard({ restaurant, src }) {
       <Card className="text-center restaurant-card">
         <img className="card-img-top" src={src} />
         <Card.Body className="restaurant-card-body">
-          <div className="starRating">
-            <Rating
-              allowHover={false}
-              size={26}
-              allowFraction
-              iconsCount={5}
-              initialValue={restaurant.rating}
-              readonly
-              tooltipStyle={{
-                height: 'auto', width: 'auto', fontSize: '13px', padding: '2px 4px', textAlign: 'center', marginTop: '4px', marginLeft: '10px',
-              }}
-            />
-          </div>
           <Card.Text>{restaurant.name}</Card.Text>
+          <StarRating rating={restaurant.rating} />
           <Card.Text>{restaurant?.style?.label} {restaurant.priceTier}</Card.Text>
         </Card.Body>
       </Card>

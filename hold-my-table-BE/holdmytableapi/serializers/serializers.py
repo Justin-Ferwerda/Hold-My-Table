@@ -79,5 +79,5 @@ class RestaurantSerializer(ModelSerializer):
         """fields"""
         model = Restaurant
         fields = ('id', 'name', 'admin_user', 'email', 'phone_number', 'address', 'website_url', 'instagram', 'banner_pic',
-        'rating', 'cancellation_policy', 'style', 'tables', 'images', 'price_tier')
+        'rating', 'cancellation_policy', 'style', 'tables', 'images', 'price_tier', 'bio')
         depth = 1
