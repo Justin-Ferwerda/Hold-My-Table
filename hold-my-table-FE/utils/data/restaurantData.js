@@ -1,7 +1,7 @@
 import { clientCredentials } from '../client';
 
 const getRestaurantByCity = (city) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/restaurants?=${city}`, {
+  fetch(`${clientCredentials.databaseURL}/restaurants?city=${city}`, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

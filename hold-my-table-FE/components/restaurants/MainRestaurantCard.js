@@ -25,7 +25,7 @@ export default function MainRestaurantCard({ restaurant, src }) {
             />
           </div>
           <Card.Text>{restaurant.name}</Card.Text>
-          <Card.Text>{restaurant.style.label} {restaurant.price_tier}</Card.Text>
+          <Card.Text>{restaurant.style.label} {restaurant.priceTier}</Card.Text>
         </Card.Body>
       </Card>
     </div>
@@ -38,7 +38,7 @@ MainRestaurantCard.propTypes = {
     style: PropTypes.shape({
       label: PropTypes.string,
     }),
-    price_tier: PropTypes.string,
+    priceTier: PropTypes.string,
     rating: PropTypes.number,
   }).isRequired,
   src: PropTypes.string.isRequired,
