@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import MainRestaurantCard from '../components/restaurants/MainRestaurantCard';
+import { useCity } from '../utils/context/cityContext';
 import getRestaurantByCity from '../utils/data/restaurantData';
 
 function Home() {
   const [restaurants, setRestaurants] = useState([]);
+  const { city } = useCity();
 
   const getTheRestaurants = () => {
-    getRestaurantByCity('Nashville').then(setRestaurants);
+    getRestaurantByCity(city).then(setRestaurants);
   };
 
   useEffect(() => {
     getTheRestaurants();
-  }, []);
+  }, [city]);
 
   return (
     <div
@@ -24,7 +27,7 @@ function Home() {
       }}
     >
       {restaurants.map((restaurant) => (
-        <MainRestaurantCard restaurant={restaurant} src={restaurant.bannerPic} />
+        <MainRestaurantCard key={restaurant.id} restaurant={restaurant} src={restaurant.bannerPic} />
       ))}
     </div>
   );

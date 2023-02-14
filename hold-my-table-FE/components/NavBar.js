@@ -15,12 +15,14 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import { useCity } from '../utils/context/cityContext';
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user } = useAuth();
   const router = useRouter();
+  const { city, setCity } = useCity();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,6 +35,10 @@ export default function MenuAppBar() {
   const signMeOut = () => {
     signOut();
     router.push('/');
+  };
+
+  const cityHandleChange = (e) => {
+    setCity(e.target.value);
   };
 
   return (
@@ -55,13 +61,13 @@ export default function MenuAppBar() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value="nashville"
+              value={city}
               label="city"
-              onChange={() => {}}
+              onChange={cityHandleChange}
             >
-              <MenuItem value={10}>Nashville</MenuItem>
-              <MenuItem value={20}>New York</MenuItem>
-              <MenuItem value={30}>Los Angeles</MenuItem>
+              <MenuItem value="Nashville">Nashville</MenuItem>
+              <MenuItem value="New York">New York</MenuItem>
+              <MenuItem value="Los Angeles">Los Angeles</MenuItem>
             </Select>
           </FormControl>
           <Box
