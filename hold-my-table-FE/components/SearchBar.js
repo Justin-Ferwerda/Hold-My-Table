@@ -19,7 +19,7 @@ export default function SearchBar({ restaurants, handleChange }) {
       options={options}
       onChange={handleChange}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Search" variant="outlined" value={options.id} />}
+      renderInput={(params) => <TextField {...params} label="Search Restaurants" variant="outlined" value={options.id} />}
     />
   );
 }

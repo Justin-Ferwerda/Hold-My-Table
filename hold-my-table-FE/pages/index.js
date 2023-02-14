@@ -4,10 +4,6 @@ import { useRestaurant } from '../utils/context/restaurantContext';
 
 function Home() {
   const { restaurants } = useRestaurant();
-  console.warn(restaurants);
-  /* useEffect(() => {
-    setRestaurants(restaurants);
-  }, [city, restaurants]); */
 
   return (
     <div
