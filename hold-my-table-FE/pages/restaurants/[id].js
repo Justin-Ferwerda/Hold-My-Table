@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { getSingleRestaurant } from '../../utils/data/restaurantData';
+import MainRestaurantCard from '../../components/restaurants/MainRestaurantCard';
 
 export default function SingleRestaurant() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function SingleRestaurant() {
         </title>
         <meta name="description" content="meta description for single restaurant page" />
       </Head>
+      <MainRestaurantCard restaurant={res} src={res.bannerPic} />
     </>
   );
 }

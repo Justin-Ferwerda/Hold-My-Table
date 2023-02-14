@@ -16,6 +16,7 @@ class Restaurant(models.Model):
     cancellation_policy = models.CharField(max_length=240)
     style = models.ForeignKey(Style, on_delete=models.CASCADE)
     price_tier = models.CharField(max_length=4)
+    bio = models.CharField(max_length=500)
 
     @property
     def tables(self):
