@@ -1,20 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
 import MainRestaurantCard from '../components/restaurants/MainRestaurantCard';
-import { useCity } from '../utils/context/cityContext';
-import getRestaurantByCity from '../utils/data/restaurantData';
+import { useRestaurant } from '../utils/context/restaurantContext';
 
 function Home() {
-  const [restaurants, setRestaurants] = useState([]);
-  const { city } = useCity();
-
-  const getTheRestaurants = () => {
-    getRestaurantByCity(city).then(setRestaurants);
-  };
-
-  useEffect(() => {
-    getTheRestaurants();
-  }, [city]);
+  const { restaurants } = useRestaurant();
+  console.warn(restaurants);
+  /* useEffect(() => {
+    setRestaurants(restaurants);
+  }, [city, restaurants]); */
 
   return (
     <div

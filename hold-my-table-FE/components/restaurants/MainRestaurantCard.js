@@ -25,7 +25,7 @@ export default function MainRestaurantCard({ restaurant, src }) {
             />
           </div>
           <Card.Text>{restaurant.name}</Card.Text>
-          <Card.Text>{restaurant.style.label} {restaurant.priceTier}</Card.Text>
+          <Card.Text>{restaurant?.style?.label} {restaurant.priceTier}</Card.Text>
         </Card.Body>
       </Card>
     </div>

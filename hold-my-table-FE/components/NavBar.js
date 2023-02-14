@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,10 +13,13 @@ import { useRouter } from 'next/router';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
+import { debounce } from 'lodash';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import { useCity } from '../utils/context/cityContext';
+import SearchBar from './SearchBar';
+import { useRestaurant } from '../utils/context/restaurantContext';
+import { getSingleRestaurant } from '../utils/data/restaurantData';
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
@@ -23,6 +27,7 @@ export default function MenuAppBar() {
   const { user } = useAuth();
   const router = useRouter();
   const { city, setCity } = useCity();
+  const { restaurants, setRestaurants } = useRestaurant();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,6 +44,20 @@ export default function MenuAppBar() {
 
   const cityHandleChange = (e) => {
     setCity(e.target.value);
+  };
+
+  const getRestaurants = debounce((value) => {
+    if (value) {
+      getSingleRestaurant(value.id).then((response) => {
+        const resArray = [];
+        resArray.push(response);
+        setRestaurants(resArray);
+      });
+    }
+  }, 0);
+
+  const searchHandleChange = (e, v) => {
+    getRestaurants(v);
   };
 
   return (
@@ -70,16 +89,7 @@ export default function MenuAppBar() {
               <MenuItem value="Los Angeles">Los Angeles</MenuItem>
             </Select>
           </FormControl>
-          <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="outlined-basic" label="Search" variant="outlined" />
-          </Box>
+          <SearchBar restaurants={restaurants} handleChange={searchHandleChange} />
           {auth && (
             <div>
               <IconButton
