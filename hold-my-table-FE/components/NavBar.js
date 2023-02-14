@@ -13,13 +13,11 @@ import { useRouter } from 'next/router';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { debounce } from 'lodash';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import { useCity } from '../utils/context/cityContext';
 import SearchBar from './SearchBar';
 import { useRestaurant } from '../utils/context/restaurantContext';
-import { getSingleRestaurant } from '../utils/data/restaurantData';
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
@@ -27,7 +25,7 @@ export default function MenuAppBar() {
   const { user } = useAuth();
   const router = useRouter();
   const { city, setCity } = useCity();
-  const { restaurants, setRestaurants } = useRestaurant();
+  const { restaurants } = useRestaurant();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -46,18 +44,10 @@ export default function MenuAppBar() {
     setCity(e.target.value);
   };
 
-  const getRestaurants = debounce((value) => {
-    if (value) {
-      getSingleRestaurant(value.id).then((response) => {
-        const resArray = [];
-        resArray.push(response);
-        setRestaurants(resArray);
-      });
-    }
-  }, 0);
-
   const searchHandleChange = (e, v) => {
-    getRestaurants(v);
+    if (v) {
+      router.push(`/restaurants/${v.id}`);
+    }
   };
 
   return (
