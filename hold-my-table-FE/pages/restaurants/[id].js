@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { getSingleRestaurant } from '../../utils/data/restaurantData';
 import RestaurantCard from '../../components/restaurants/RestaurantCard';
+import BookTable from '../../components/restaurants/BookTable';
 
 export default function SingleRestaurant() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function SingleRestaurant() {
         <meta name="description" content="meta description for single restaurant page" />
       </Head>
       <RestaurantCard restaurant={res} src={res.bannerPic} />
+      <BookTable restaurant={res} />
     </>
   );
 }
