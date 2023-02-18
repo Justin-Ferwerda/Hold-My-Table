@@ -60,3 +60,11 @@ body {
   width: 300px;
   background-color: lightgreen;
 }
+
+.review-counter {
+  cursor: pointer;
+}
+
+.review-counter:hover {
+  color: blue;
+}

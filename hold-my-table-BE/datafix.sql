@@ -7,5 +7,5 @@ SET instagram = 'audreynashville'
 WHERE id = 1
 
 UPDATE holdmytableapi_restaurant
-SET admin_user_id = 2
-WHERE id = 1
+SET style_id = 11
+WHERE id = 4
