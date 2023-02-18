@@ -42,3 +42,8 @@ class Restaurant(models.Model):
             return rating
         else:
             return 0
+        
+    @property
+    def recommendations(self):
+        """ge
+        
