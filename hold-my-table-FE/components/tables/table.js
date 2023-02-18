@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useGesture } from '@use-gesture/react';
-import StarRating from '../StarRating';
+import { useSpring, animated } from '@react-spring/web';
 import { circleStyles, rectangleStyles, squareStyles } from '../../utils/data/tableStyleOptions';
 import Seat from './seat';
 
 export default function Table({
   table, xCoord, yCoord, saveLocation, editMode,
 }) {
-  const [location, setLocation] = useState({ x: xCoord, y: yCoord });
+  const [{ x, y }, api] = useSpring(() => ({ x: xCoord, y: yCoord }));
   const seats = [];
 
   for (let i = 0; i < table.capacity; i++) {
@@ -16,11 +15,9 @@ export default function Table({
   }
 
   const bind = useGesture({
-    onDrag: ({ offset: [l, t] }) => {
-      setLocation({ l, t });
-    },
+    onDrag: ({ down, offset: [ox, oy] }) => api.start({ x: ox, y: oy, immediate: down }),
     onDragEnd: () => {
-      saveLocation(table.id, location);
+      saveLocation(table.id, { x, y });
     },
   });
 
@@ -35,10 +32,9 @@ export default function Table({
   }
 
   return (
-    <div className="table" {...(editMode && bind())} style={{ ...styleOptions, left: location.x, top: location.y }}>
-      <StarRating rating={table.rating} />
+    <animated.div className="table" {...(editMode && bind())} style={{ ...styleOptions, x, y }}>
       {seats}
-    </div>
+    </animated.div>
   );
 }
 

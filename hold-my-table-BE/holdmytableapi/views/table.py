@@ -55,13 +55,14 @@ class TableView(ViewSet):
     @action(methods=['put'], detail=False)
     def save_tables(self, request):
         """handles save table layout for restaurant"""
-        tables = request.data['tables']
+        table_ids = request.data.keys()
 
-        for table in tables:
-            table_to_save = Table.objects.get(pk=table['id'])
+        for table_id in table_ids:
+            table_to_save = Table.objects.get(pk=table_id)
+            coords = request.data.get(table_id)
 
-            table_to_save.x_coord = table['x_coord']
-            table_to_save.y_coord = table['y_coord']
+            table_to_save.x_coord = coords['x']
+            table_to_save.y_coord = coords['y']
 
             table_to_save.save()
 
