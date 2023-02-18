@@ -28,7 +28,10 @@ export default function SingleRestaurant() {
         <meta name="description" content="meta description for single restaurant page" />
       </Head>
       <RestaurantCard restaurant={res} src={res.bannerPic} />
-      <BookTable restaurant={res} />
+      <div className="book-table">
+        <BookTable restaurant={res} />
+        <div className="recommendations" />
+      </div>
     </>
   );
 }

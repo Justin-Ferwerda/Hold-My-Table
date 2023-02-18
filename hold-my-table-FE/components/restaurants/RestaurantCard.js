@@ -8,7 +8,7 @@ import StarRating from '../StarRating';
 
 export default function RestaurantCard({ restaurant, src }) {
   return (
-    <div className="card mb-3">
+    <div className="single-r-card card mb-3">
       <div className="row no-gutters">
         <div className="col-md-4">
           <img src={src} className="card-img" alt="..." />

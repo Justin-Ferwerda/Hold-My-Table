@@ -34,5 +34,29 @@ body {
 }
 
 .table {
+  display: flex;
   background-color: lightblue;
+  justify-content: space-evenly;
+}
+
+.single-r-card {
+  margin-top: 50px;
+}
+
+.book-table {
+  display: grid;
+}
+
+.book-table-component {
+  grid-column: 1;
+}
+
+.recommendations {
+  grid-column: 2;
+}
+
+.layout-container {
+  height: 300px;
+  width: 300px;
+  background-color: lightgreen;
 }

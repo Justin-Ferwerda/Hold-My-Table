@@ -32,9 +32,18 @@ export default function Table({
   }
 
   return (
-    <animated.div className="table" {...(editMode && bind())} style={{ ...styleOptions, x, y }}>
-      {seats}
-    </animated.div>
+    <div className="layout-container">
+      <animated.div
+        className="table"
+        {...(editMode && bind())}
+        style={{
+          ...styleOptions, x, y,
+        }}
+      >
+        {seats}
+      </animated.div>
+    </div>
+
   );
 }
 
