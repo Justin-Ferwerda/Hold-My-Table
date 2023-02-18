@@ -26,8 +26,13 @@ body {
 }
 
 .seat {
-  height: 5%;
-  width: 5%;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
+  background-color: black;
   border-color: black;
+}
+
+.table {
+  background-color: lightblue;
 }
