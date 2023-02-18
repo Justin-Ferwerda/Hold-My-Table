@@ -25,3 +25,15 @@ class Table(models.Model):
         """table reviews"""
         reviews = [review for review in self.table_reviews.all()]
         return reviews
+
+    @property
+    def rating(self):
+        """gets rating for table"""
+        reviews = [review for review in self.table_reviews.all()]
+        ratings = [review.rating for review in reviews]
+        if len(ratings):
+            avg = sum(ratings)/len(ratings)
+            rating = round(avg*2)/2
+            return rating
+        else:
+            return 0
