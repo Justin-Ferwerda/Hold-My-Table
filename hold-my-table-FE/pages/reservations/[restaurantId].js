@@ -6,6 +6,7 @@ import { getSingleRestaurant, saveTables } from '../../utils/data/restaurantData
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
+import ReservationPicker from '../../components/reservations/datePicker';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -14,6 +15,9 @@ export default function ReservationPortal() {
   const { user } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
+  const [dateValue, setDateValue] = useState();
+  const [timeValue, setTimeValue] = useState();
+  const [guestValue, setGuestValue] = useState();
 
   const getTheRestaurant = () => {
     getSingleRestaurant(restaurantId).then(setRestaurant);
@@ -39,17 +43,38 @@ export default function ReservationPortal() {
     getTheRestaurant();
   }, []);
 
+  const dateHandleChange = (date) => {
+    setDateValue(date);
+  };
+
+  const timeHandleChange = (time) => {
+    setTimeValue(time);
+  };
+
+  const guestHandleChange = (guests) => {
+    setGuestValue(guests);
+  };
+
+  const dateProps = {
+    dateHandleChange,
+    timeHandleChange,
+    guestHandleChange,
+    dateValue,
+    timeValue,
+    guestValue,
+  };
+
   return (
     <>
-      {
-        restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} />)
-      }
       {user.id === restaurant?.adminUser?.id ? (
         <div className="user-buttons">
           <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
           <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} />
         </div>
-      ) : <div />}
+      ) : <ReservationPicker {...dateProps} />}
+      {
+        restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} />)
+      }
     </>
   );
 }
