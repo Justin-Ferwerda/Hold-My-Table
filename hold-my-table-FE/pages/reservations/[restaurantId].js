@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { getSingleRestaurant, saveTables } from '../../utils/data/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
+import AddTableModal from '../../components/tables/addTableModal';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -39,7 +40,12 @@ export default function ReservationPortal() {
       {
         restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} />)
       }
-      {user.id === restaurant?.adminUser?.id ? <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button> : <div />}
+      {user.id === restaurant?.adminUser?.id ? (
+        <div className="user-buttons">
+          <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
+          <AddTableModal restaurant={restaurant} />
+        </div>
+      ) : <div />}
     </>
   );
 }
