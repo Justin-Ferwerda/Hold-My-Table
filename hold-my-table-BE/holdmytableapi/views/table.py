@@ -25,6 +25,25 @@ class TableView(ViewSet):
         data = snake_case_to_camel_case_many(serializer.data)
         return Response(data)
 
+    def create(self, request):
+        """handles POST requests for tables"""
+        data = camel_case_to_snake_case(request.data)
+        restaurant = Restaurant.objects.get(pk=data['restaurant_id'])
+
+        table = Table.objects.create(
+            restaurant = restaurant,
+            capacity = int(data['capacity']),
+            is_reserved = data['is_reserved'],
+            number = data['number'],
+            reservable = data['reservable'],
+            shape = data['shape'],
+            x_coord = data['x_coord'],
+            y_coord = data['y_coord'],
+        )
+
+        serializer = TableSerializer(table)
+        return Response(serializer.data)
+
     def update(self, request, pk):
         """handles update requests for tables"""
         data = camel_case_to_snake_case(request.data)

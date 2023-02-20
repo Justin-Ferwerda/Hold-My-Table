@@ -5,13 +5,16 @@ import {
 } from 'react-bootstrap';
 import { updateTable, createTable } from '../../utils/data/tableData';
 
-export default function TableForm({ table, restaurant, onUpdate }) {
+export default function TableForm({
+  table, restaurant, onUpdate, handleClose, setEditMode,
+}) {
   const [reservable, setReservable] = useState(true);
   const [formData, setFormData] = useState({
     restaurantId: restaurant.id,
-    x_coord: 0,
-    y_coord: 0,
-    is_reserved: false,
+    xCoord: 0,
+    yCoord: 0,
+    isReserved: false,
+    reservable,
   });
 
   const capacityOptions = [2, 3, 4, 5, 6, 7, 8];
@@ -35,10 +38,9 @@ export default function TableForm({ table, restaurant, onUpdate }) {
     if (table?.id) {
       updateTable(formData).then(() => onUpdate());
     } else {
-      const payload = {
-        formData,
-      };
-      createTable(payload).then(() => onUpdate());
+      createTable(formData).then(() => onUpdate());
+      handleClose();
+      setEditMode(true);
     }
   };
 
@@ -89,9 +91,13 @@ TableForm.propTypes = {
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func,
+  handleClose: PropTypes.func,
+  setEditMode: PropTypes.func,
 };
 
 TableForm.defaultProps = {
   table: {},
   onUpdate: () => null,
+  handleClose: () => null,
+  setEditMode: () => null,
 };

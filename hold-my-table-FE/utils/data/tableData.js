@@ -25,6 +25,7 @@ const updateTable = (table) => new Promise((resolve, reject) => {
 });
 
 const createTable = (payload) => new Promise((resolve, reject) => {
+  console.warn(payload);
   fetch(`${clientCredentials.databaseURL}/tables`, {
     method: 'POST',
     body: JSON.stringify(payload),

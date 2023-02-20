@@ -38,6 +38,6 @@ TableModal.propTypes = {
       banner_pic: PropTypes.string,
     }).isRequired,
     rating: PropTypes.number,
-    reviews: PropTypes.shape({}).isRequired,
+    reviews: PropTypes.shape([]).isRequired,
   }).isRequired,
 };
