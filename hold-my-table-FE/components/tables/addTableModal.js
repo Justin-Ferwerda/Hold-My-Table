@@ -6,7 +6,9 @@ import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import TableForm from '../forms/TableForm';
 
-export default function AddTableModal({ table, restaurant }) {
+export default function AddTableModal({
+  table, restaurant, onUpdate, setEditMode,
+}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,7 +22,7 @@ export default function AddTableModal({ table, restaurant }) {
           <Modal.Title><h4 className="text-black mt-5">{table.id ? 'Update' : 'Add'} Table</h4></Modal.Title>
         </Modal.Header>
         <Modal.Body className="tracklist-modal">
-          <TableForm table={table} restaurant={restaurant} />
+          <TableForm table={table} restaurant={restaurant} onUpdate={onUpdate} handleClose={handleClose} setEditMode={setEditMode} />
         </Modal.Body>
       </Modal>
     </>

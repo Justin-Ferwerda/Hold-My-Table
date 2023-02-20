@@ -31,6 +31,10 @@ export default function ReservationPortal() {
     }
   };
 
+  const onUpdate = () => {
+    getTheRestaurant();
+  };
+
   useEffect(() => {
     getTheRestaurant();
   }, []);
@@ -43,7 +47,7 @@ export default function ReservationPortal() {
       {user.id === restaurant?.adminUser?.id ? (
         <div className="user-buttons">
           <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
-          <AddTableModal restaurant={restaurant} />
+          <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} />
         </div>
       ) : <div />}
     </>
