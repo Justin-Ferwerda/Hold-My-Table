@@ -7,7 +7,6 @@
       "restaurant": 1,
       "capacity": 4,
       "shape": "square",
-      "is_reserved": false,
       "x_coord": 8,
       "y_coord": 93.42500305175781,
       "reservable": true

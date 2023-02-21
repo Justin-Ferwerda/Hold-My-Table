@@ -1,4 +1,6 @@
 """Viewset for Tables"""
+from datetime import timedelta
+from django.utils.dateparse import parse_datetime
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,6 +8,7 @@ from rest_framework.decorators import action
 from holdmytableapi.models import Restaurant, Table
 from holdmytableapi.serializers import TableSerializer
 from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single
+
 
 class TableView(ViewSet):
     """handles table requests"""
@@ -33,7 +36,6 @@ class TableView(ViewSet):
         table = Table.objects.create(
             restaurant = restaurant,
             capacity = int(data['capacity']),
-            is_reserved = data['is_reserved'],
             number = data['number'],
             reservable = data['reservable'],
             shape = data['shape'],
@@ -84,5 +86,28 @@ class TableView(ViewSet):
             table_to_save.y_coord = coords['y']
 
             table_to_save.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['post'], detail=False)
+    def check_if_reserved(self, request):
+        """checks if table is reserved and sets reserved tables"""
+        time = request.data['time']
+        date = request.data['date']
+        table_ids = request.data['tables']
+
+        date_time = date + ' ' + time
+
+        for table_id in table_ids:
+            table = Table.objects.get(pk=table_id)
+            reservations = table.table_reservations.all()
+            for res in reservations:
+                time_to_check = parse_datetime(date_time).timestamp()
+
+                time_difference_1 = time_to_check - res.date.timestamp()
+                time_difference_2 = res.date.timestamp() - time_to_check
+                if time_difference_1 < 90 or time_difference_2 < 90 :
+                    table.is_reserved = True
+                    table.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)

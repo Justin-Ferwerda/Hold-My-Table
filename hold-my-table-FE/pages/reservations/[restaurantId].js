@@ -69,7 +69,9 @@ export default function ReservationPortal() {
       {user.id === restaurant?.adminUser?.id ? (
         <div className="user-buttons">
           <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
-          <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} />
+          <div>
+            <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} /> Table
+          </div>
         </div>
       ) : <ReservationPicker {...dateProps} />}
       {

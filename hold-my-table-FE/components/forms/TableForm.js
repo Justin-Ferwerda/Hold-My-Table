@@ -13,7 +13,6 @@ export default function TableForm({
     restaurantId: restaurant.id,
     xCoord: 0,
     yCoord: 0,
-    isReserved: false,
     reservable,
   });
 

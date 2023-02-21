@@ -10,4 +10,5 @@ class Reservation(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='table_reservations')
     date = models.DateTimeField()
     notes = models.CharField(max_length=240)
+    cancellation_policy = models.CharField(max_length=240)
  
