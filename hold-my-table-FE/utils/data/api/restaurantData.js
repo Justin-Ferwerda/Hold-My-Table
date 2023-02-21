@@ -1,4 +1,4 @@
-import { clientCredentials } from '../client';
+import { clientCredentials } from '../../client';
 
 const getRestaurantByCity = (city) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/restaurants?city=${city}`, {

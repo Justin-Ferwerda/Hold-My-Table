@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { getSingleRestaurant, saveTables } from '../../utils/data/restaurantData';
+import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
@@ -15,9 +15,9 @@ export default function ReservationPortal() {
   const { user } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
-  const [dateValue, setDateValue] = useState();
-  const [timeValue, setTimeValue] = useState();
-  const [guestValue, setGuestValue] = useState();
+  const [dateValue, setDateValue] = useState('');
+  const [timeValue, setTimeValue] = useState('');
+  const [guestValue, setGuestValue] = useState(2);
 
   const getTheRestaurant = () => {
     getSingleRestaurant(restaurantId).then(setRestaurant);
@@ -47,12 +47,12 @@ export default function ReservationPortal() {
     setDateValue(date);
   };
 
-  const timeHandleChange = (time) => {
-    setTimeValue(time);
+  const timeHandleChange = (e) => {
+    setTimeValue(e.target.value);
   };
 
-  const guestHandleChange = (guests) => {
-    setGuestValue(guests);
+  const guestHandleChange = (e) => {
+    setGuestValue(e.target.value);
   };
 
   const dateProps = {
@@ -73,7 +73,7 @@ export default function ReservationPortal() {
         </div>
       ) : <ReservationPicker {...dateProps} />}
       {
-        restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} />)
+        restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} />)
       }
     </>
   );

@@ -68,3 +68,7 @@ body {
 .review-counter:hover {
   color: blue;
 }
+
+.date-picker {
+  margin-top: 30px;
+}

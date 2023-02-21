@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { signOut } from '../../utils/auth';
+import { signOut } from '../../utils/data/api/auth';
 import { useAuth } from '../../utils/context/authContext';
 import { useCity } from '../../utils/context/cityContext';
 import SearchBar from './SearchBar';

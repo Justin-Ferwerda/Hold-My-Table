@@ -4,9 +4,37 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-import StarRating from '../StarRating';
+import { useRouter } from 'next/router';
+import StarRating from '../utility/StarRating';
 
-export default function TableModal({ show, handleClose, table }) {
+export default function TableModal({
+  show, handleClose, table, dateProps,
+}) {
+  const router = useRouter();
+
+  const formattedDate = () => {
+    const date = dateProps.dateValue;
+    const year = date.$y;
+    const month = `${date.$M < 10 ? '0' : ''}${date.$M}`;
+    const day = `${date.$D < 10 ? '0' : ''}${date.$D}`;
+    const hyphen = '-';
+    const newDate = ''.concat(year, hyphen, month, hyphen, day);
+    return newDate;
+  };
+
+  const sendData = () => {
+    router.push({
+      pathname: '/reservations/confirm',
+      query: {
+        dateValue: formattedDate(),
+        timeValue: dateProps.timeValue,
+        guestValue: dateProps.guestValue,
+        tableId: table.id,
+        restaurantName: table.restaurant.name,
+      },
+    });
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -21,7 +49,7 @@ export default function TableModal({ show, handleClose, table }) {
               ({table.reviews.length}) review{table.reviews.length > 1 ? 's' : ''}
             </div>
           </Link>
-          {!table.isReserved ? <Button variant="contained" className="book-btn">Book Now</Button> : <div />}
+          {!table.isReserved ? <Button variant="contained" className="book-btn" onClick={sendData}>Book Now</Button> : <div />}
         </Modal.Body>
       </Modal>
     </>

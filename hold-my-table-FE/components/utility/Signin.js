@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { signIn } from '../utils/auth';
+import { signIn } from '../../utils/data/api/auth';
 
 function Signin() {
   return (

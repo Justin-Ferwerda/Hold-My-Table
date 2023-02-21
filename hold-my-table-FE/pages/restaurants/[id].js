@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { getSingleRestaurant } from '../../utils/data/restaurantData';
+import { getSingleRestaurant } from '../../utils/data/api/restaurantData';
 import RestaurantCard from '../../components/restaurants/RestaurantCard';
 import BookTable from '../../components/restaurants/BookTable';
 

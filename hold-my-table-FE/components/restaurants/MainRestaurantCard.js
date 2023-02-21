@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import StarRating from '../StarRating';
+import StarRating from '../utility/StarRating';
 
 export default function MainRestaurantCard({ restaurant, src }) {
   return (

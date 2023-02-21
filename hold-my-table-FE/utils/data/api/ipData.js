@@ -1,4 +1,4 @@
-import geoAuth from '../geolocation';
+import geoAuth from '../../geolocation';
 
 const getLocation = () => new Promise((resolve, reject) => {
   fetch(`https://geolocation-db.com/json/${geoAuth.geoKey}`)
