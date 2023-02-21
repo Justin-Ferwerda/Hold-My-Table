@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Form, FloatingLabel, FormCheck, Button,
 } from 'react-bootstrap';
-import { updateTable, createTable } from '../../utils/data/tableData';
+import { updateTable, createTable } from '../../utils/data/api/tableData';
 
 export default function TableForm({
   table, restaurant, onUpdate, handleClose, setEditMode,

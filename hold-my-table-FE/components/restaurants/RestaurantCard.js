@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LanguageIcon from '@mui/icons-material/Language';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import StarRating from '../StarRating';
+import StarRating from '../utility/StarRating';
 
 export default function RestaurantCard({ restaurant, src }) {
   return (

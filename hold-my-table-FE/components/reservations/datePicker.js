@@ -9,17 +9,20 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import PropTypes from 'prop-types';
-import timeOptions from '../../utils/data/timeOptions';
+import timeOptions from '../../utils/data/options/timeOptions';
+import guestOptions from '../../utils/data/options/guestOptions';
 
 export default function ReservationPicker({
   dateValue, dateHandleChange, timeValue, timeHandleChange, guestValue, guestHandleChange,
 }) {
-  const guestOptions = [
-    2, 3, 4, 5, 6, 7, 8,
-  ];
-
   return (
-    <Stack direction="row" spacing={3}>
+    <Stack
+      className="date-picker"
+      direction="row"
+      justifyContent="space-evenly"
+      alignItems="center"
+      spacing={2}
+    >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label="Date desktop"

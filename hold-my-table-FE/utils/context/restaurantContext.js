@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { getRestaurantByCity } from '../data/restaurantData';
+import { getRestaurantByCity } from '../data/api/restaurantData';
 import { useCity } from './cityContext';
 
 const RestaurantContext = createContext();
