@@ -17,8 +17,7 @@ export default function TableModal({
     const year = date.$y;
     const month = `${date.$M < 10 ? '0' : ''}${date.$M}`;
     const day = `${date.$D < 10 ? '0' : ''}${date.$D}`;
-    const hyphen = '-';
-    const newDate = ''.concat(year, hyphen, month, hyphen, day);
+    const newDate = ''.concat(year, '-', month, '-', day);
     return newDate;
   };
 
@@ -29,8 +28,8 @@ export default function TableModal({
         dateValue: formattedDate(),
         timeValue: dateProps.timeValue,
         guestValue: dateProps.guestValue,
-        tableId: table.id,
-        restaurantName: table.restaurant.name,
+        table: table.id,
+        restaurant: table.restaurant.id,
       },
     });
   };

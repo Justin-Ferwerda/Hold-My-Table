@@ -9,7 +9,6 @@ class Table(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='tables')
     capacity = models.IntegerField()
     shape = models.CharField(max_length=25)
-    is_reserved = models.BooleanField()
     x_coord = models.FloatField()
     y_coord = models.FloatField()
     reservable = models.BooleanField()
@@ -37,3 +36,12 @@ class Table(models.Model):
             return rating
         else:
             return 0
+
+    @property
+    def is_reserved(self):
+        """calculates if table is reserved during certain time"""
+        return self._is_reserved
+
+    @is_reserved.setter
+    def is_reserved(self, value):
+        self._is_reserved=value

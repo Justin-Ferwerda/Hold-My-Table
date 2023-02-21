@@ -57,7 +57,7 @@ class TableSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Table
-        fields = ('id', 'restaurant', 'number', 'capacity', 'shape', 'is_reserved', 'x_coord', 'y_coord', 'reservable', 'reservations', 'reviews', 'rating')
+        fields = ('id', 'restaurant', 'number', 'capacity', 'shape', 'is_reserved', 'x_coord', 'y_coord', 'reservable', 'reservations', 'reviews', 'rating', 'is_reserved')
         depth = 1
 
 class RestaurantImageSerializer(ModelSerializer):
