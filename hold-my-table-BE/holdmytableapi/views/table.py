@@ -1,6 +1,5 @@
 """Viewset for Tables"""
-from datetime import timedelta
-from django.utils.dateparse import parse_datetime
+from datetime import datetime, timedelta
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -96,18 +95,38 @@ class TableView(ViewSet):
         date = request.data['date']
         table_ids = request.data['tables']
 
-        date_time = date + ' ' + time
+        year, month, day = date.split('-')
+        hour, minutes, seconds = time.split(':')
+
+        request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
+        
+        tables = []
 
         for table_id in table_ids:
             table = Table.objects.get(pk=table_id)
             reservations = table.table_reservations.all()
             for res in reservations:
-                time_to_check = parse_datetime(date_time).timestamp()
+                date, time = str(res.date).split(' ')
 
-                time_difference_1 = time_to_check - res.date.timestamp()
-                time_difference_2 = res.date.timestamp() - time_to_check
-                if time_difference_1 < 90 or time_difference_2 < 90 :
-                    table.is_reserved = True
-                    table.save()
+                year, month, day = date.split('-')
+                hour, minutes, seconds, _ = time[:-1].split(':')
 
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+                secs, _ = seconds.split('+')
+
+                res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(secs))
+
+                difference = request_date - res_date
+
+                if difference <= timedelta(minutes=90):
+                    table.reserved = True
+                    
+                else:
+                    table.reserved = False
+            
+            
+            tables.append(table)
+            
+            serializer = TableSerializer(tables, many=True)
+                    
+
+        return Response(serializer.data)

@@ -38,10 +38,10 @@ class Table(models.Model):
             return 0
 
     @property
-    def is_reserved(self):
+    def reserved(self):
         """calculates if table is reserved during certain time"""
-        return self._is_reserved
+        return self.__reserved
 
-    @is_reserved.setter
-    def is_reserved(self, value):
-        self._is_reserved=value
+    @reserved.setter
+    def reserved(self, value):
+        self.__reserved=value
