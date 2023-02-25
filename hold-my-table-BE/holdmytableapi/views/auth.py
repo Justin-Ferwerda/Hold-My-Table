@@ -33,7 +33,7 @@ def register_user(request):
       request -- The full HTTP request object
     '''
     data = camel_case_to_snake_case(request.data)
-    
+
     user = User.objects.create(
         uid=data['uid'],
         first_name=data['first_name'],

@@ -7,20 +7,33 @@ import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
 import ReservationPicker from '../../components/reservations/datePicker';
+import { checkReservedTables } from '../../utils/data/api/tableData';
+import getCurrentDate from '../../utils/data/currentDate';
 
 export default function ReservationPortal() {
   const router = useRouter();
   const { restaurantId } = router.query;
   const [restaurant, setRestaurant] = useState({});
+  const [tables, setTables] = useState([]);
   const { user } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
-  const [dateValue, setDateValue] = useState('');
-  const [timeValue, setTimeValue] = useState('');
+  const [dateValue, setDateValue] = useState(getCurrentDate());
+  const [timeValue, setTimeValue] = useState('17:00:00');
   const [guestValue, setGuestValue] = useState(2);
 
-  const getTheRestaurant = () => {
-    getSingleRestaurant(restaurantId).then(setRestaurant);
+  const getTheRestaurant = async () => {
+    const res = await getSingleRestaurant(restaurantId);
+    setRestaurant(res);
+    setTables(res.tables);
+    const tableIds = tables?.map((table) => table.id);
+    const payload = {
+      tables: tableIds,
+      time: timeValue,
+      date: dateValue,
+    };
+    console.warn(payload);
+    checkReservedTables(payload).then(setTables);
   };
 
   const saveLocation = (id, location) => {
@@ -75,7 +88,7 @@ export default function ReservationPortal() {
         </div>
       ) : <ReservationPicker {...dateProps} />}
       {
-        restaurant?.tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} />)
+        tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} />)
       }
     </>
   );

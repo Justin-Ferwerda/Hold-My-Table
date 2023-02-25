@@ -44,4 +44,4 @@ class Table(models.Model):
 
     @reserved.setter
     def reserved(self, value):
-        self.__reserved=value
+        self.__reserved = value

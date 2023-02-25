@@ -36,4 +36,18 @@ const createTable = (payload) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getSingleTable, updateTable, createTable };
+const checkReservedTables = (tableIds) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/tables/check_if_reserved`, {
+    method: 'POST',
+    body: JSON.stringify(tableIds),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+    .then((response) => resolve(response.json()))
+    .catch((error) => reject(error));
+});
+
+export {
+  getSingleTable, updateTable, createTable, checkReservedTables,
+};
