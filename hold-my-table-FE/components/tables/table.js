@@ -22,7 +22,7 @@ export default function Table({
     onDragEnd: editMode ? () => {
       saveLocation(table.id, { x, y });
     } : () => null,
-    onMouseEnter: !editMode ? () => {
+    onMouseDown: !editMode ? () => {
       setShow(true);
     } : () => null,
   });

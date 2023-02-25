@@ -18,11 +18,15 @@ class Restaurant(models.Model):
     price_tier = models.CharField(max_length=4)
     bio = models.CharField(max_length=500)
 
-    @property
-    def tables(self):
-        """restaurant tables"""
-        tables = [table for table in self.tables.all()]
-        return tables
+    # @property
+    # def tables(self):
+    #     """restaurant tables"""
+    #     _tables = [table for table in self.tables.all()]
+    #     return _tables
+
+    # @tables.setter
+    # def tables(self, value):
+    #     self._tables = value
 
     @property
     def images(self):
