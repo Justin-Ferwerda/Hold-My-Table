@@ -99,7 +99,7 @@ class TableView(ViewSet):
         hour, minutes, seconds = time.split(':')
 
         request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
-        
+
         tables = []
 
         for table_id in table_ids:
@@ -115,18 +115,19 @@ class TableView(ViewSet):
 
                 res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(secs))
 
-                difference = request_date - res_date
+                diff_1 = request_date - res_date
+                diff_2 = res_date - request_date
 
-                if difference <= timedelta(minutes=90):
+                if diff_1 <= timedelta(minutes=90) or diff_2 <= timedelta(minutes=90):
                     table.reserved = True
-                    
+
                 else:
                     table.reserved = False
-            
-            
+
+
             tables.append(table)
-            
-            serializer = TableSerializer(tables, many=True)
-                    
+
+        serializer = TableSerializer(tables, many=True)
+
 
         return Response(serializer.data)

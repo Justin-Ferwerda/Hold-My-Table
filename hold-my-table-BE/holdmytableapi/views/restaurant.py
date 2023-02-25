@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from holdmytableapi.models import User, Restaurant, Style
 from holdmytableapi.serializers import RestaurantSerializer
-from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single
+from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single, check_if_reserved
 
 class RestaurantView(ViewSet):
     """restaurant views"""
@@ -14,6 +14,10 @@ class RestaurantView(ViewSet):
         """get single restaurant"""
 
         restaurant = Restaurant.objects.get(pk=pk)
+        date = request.query_params.get('date')
+        time = request.query_params.get('time')
+        if date and time is not None:
+            restaurant.tables.set(check_if_reserved(restaurant.tables.all(), date, time))
         serializer = RestaurantSerializer(restaurant)
         return Response(snake_case_to_camel_case_single(serializer.data))
 
