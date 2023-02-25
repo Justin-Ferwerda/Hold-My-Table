@@ -7,7 +7,7 @@ import { registerUser } from '../../utils/data/api/auth';
 import getStyles from '../../utils/data/api/styleData';
 import updateUserProfile from '../../utils/data/api/userData';
 
-function RegisterForm({ user, updateUser, userObj }) {
+function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
     uid: user.uid,
   });
@@ -36,8 +36,8 @@ function RegisterForm({ user, updateUser, userObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userObj?.id) {
-      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: userObj.profileImageUrl }).then(() => router.push('/'));
+    if (user?.id) {
+      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: user.profileImageUrl }).then(() => updateUser(user.uid)).then(() => router.push(`/user/${user.id}`));
     } else {
       registerUser({ ...formData, styleIds: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/'));
     }
@@ -49,23 +49,23 @@ function RegisterForm({ user, updateUser, userObj }) {
 
   useEffect(() => {
     getTheStyles();
-    if (userObj?.id) {
+    if (user?.id) {
       setSelected(() => {
         // eslint-disable-next-line react/prop-types
-        userObj?.styles?.map((style) => (
+        user?.styles?.map((style) => (
           {
             value: style.id,
             label: style.label,
           }
         ));
       });
-      setFormData(userObj);
+      setFormData(user);
     }
-  }, [userObj]);
+  }, [user]);
 
   return (
     <>
-      <h1>{userObj?.id ? 'Edit Profile' : 'Tell Us About Yourself'}</h1>
+      <h1>{user?.id ? 'Edit Profile' : 'Tell Us About Yourself'}</h1>
       <Form onSubmit={handleSubmit}>
         <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
           <Form.Control type="text" placeholder="First Name" name="firstName" value={formData.firstName} onChange={handleChange} required />
@@ -93,7 +93,7 @@ function RegisterForm({ user, updateUser, userObj }) {
           onChange={styleHandleChange}
           required
         />
-        <Button type="submit" className="submitButton">{userObj?.id ? 'Update' : 'Create'} Profile</Button>
+        <Button type="submit" className="submitButton">{user?.id ? 'Update' : 'Create'} Profile</Button>
       </Form>
     </>
   );
@@ -105,16 +105,14 @@ RegisterForm.propTypes = {
     fbUser: PropTypes.shape({
       photoURL: PropTypes.string,
     }),
-  }).isRequired,
-  updateUser: PropTypes.func.isRequired,
-  userObj: PropTypes.shape({
     id: PropTypes.number,
     profileImageUrl: PropTypes.string,
   }),
+  updateUser: PropTypes.func.isRequired,
 };
 
 RegisterForm.defaultProps = {
-  userObj: {},
+  user: {},
 };
 
 export default RegisterForm;
