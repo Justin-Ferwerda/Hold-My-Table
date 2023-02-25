@@ -37,4 +37,34 @@ const saveTables = (tables) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getRestaurantByCity, getSingleRestaurant, saveTables };
+const updateRestaurant = (data) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/restaurants/${data.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch((error) => reject(error));
+});
+
+const createRestaurant = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/restaurants`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/js,on',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch((error) => reject(error));
+});
+
+export {
+  getRestaurantByCity, getSingleRestaurant, saveTables, updateRestaurant, createRestaurant,
+};
