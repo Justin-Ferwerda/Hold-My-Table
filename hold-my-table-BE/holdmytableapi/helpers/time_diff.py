@@ -10,20 +10,18 @@ def check_if_reserved(tables, date, time):
 
     for table in tables:
         reservations = table.table_reservations.all()
-        if len(reservations):
-            for res in reservations:
-                date, time = str(res.date).split(' ')
-                year, month, day = date.split('-')
-                hour, minutes, seconds, _ = time[:-1].split(':')
-                secs, _ = seconds.split('+')
+        for res in reservations:
+            date, time = str(res.date).split(' ')
+            year, month, day = date.split('-')
+            hour, minutes, seconds, _ = time[:-1].split(':')
+            secs, _ = seconds.split('+')
+            res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(secs))                
+            diff_1 = request_date - res_date
 
-                res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(secs))
+            print(diff_1)                
+            print(diff_1 <= timedelta(minutes=90))
 
-                diff_1 = request_date - res_date
-                diff_2 = res_date - request_date
-                table.reserved = diff_1 <= timedelta(minutes=90) or diff_2 <= timedelta(minutes=90)
-
-        else:
-            table.reserved = False
+            table.reserved = diff_1 <= timedelta(minutes=90)
+            print(table.reserved)
 
     return tables
