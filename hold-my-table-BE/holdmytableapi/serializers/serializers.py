@@ -25,7 +25,7 @@ class ReservationSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Reservation
-        fields = ('id', 'user', 'table', 'date', 'notes')
+        fields = ('id', 'user', 'table', 'date', 'notes', 'guests')
         depth = 2
         
 class UserSerializer(ModelSerializer):
