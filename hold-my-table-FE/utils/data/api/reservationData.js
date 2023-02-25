@@ -12,4 +12,15 @@ const createReservation = (payload) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default createReservation;
+const deleteReservation = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/reservations/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+    .then((response) => resolve(response.json()))
+    .catch((error) => reject(error));
+});
+
+export { createReservation, deleteReservation };

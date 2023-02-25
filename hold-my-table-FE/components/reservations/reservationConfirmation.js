@@ -6,7 +6,7 @@ import moment from 'moment';
 import PeopleIcon from '@mui/icons-material/People';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import createReservation from '../../utils/data/api/reservationData';
+import { createReservation } from '../../utils/data/api/reservationData';
 
 export default function Confirmation({
   dateValue, timeValue, guestValue, table, restaurant,

@@ -6,9 +6,9 @@ UPDATE holdmytableapi_restaurant
 SET instagram = 'audreynashville'
 WHERE id = 1
 
-UPDATE holdmytableapi_restaurant
-SET style_id = 11
-WHERE id = 4
+UPDATE holdmytableapi_reservation
+SET user_id = 2
+WHERE id = 1
 
 DELETE FROM holdmytableapi_review
 WHERE table_id = 1
