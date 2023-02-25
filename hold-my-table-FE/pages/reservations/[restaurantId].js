@@ -2,12 +2,12 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import moment from 'moment/moment';
 import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
 import ReservationPicker from '../../components/reservations/datePicker';
-import getCurrentDate from '../../utils/data/currentDate';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -17,14 +17,15 @@ export default function ReservationPortal() {
   const { user } = useAuth();
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
-  const [dateValue, setDateValue] = useState(getCurrentDate());
+  const [dateValue, setDateValue] = useState(moment().format('YYYY-MM-DD'));
   const [timeValue, setTimeValue] = useState('17:00:00');
   const [guestValue, setGuestValue] = useState(2);
 
   const getTheRestaurant = async () => {
-    const res = await getSingleRestaurant(restaurantId);
+    const res = await getSingleRestaurant(restaurantId, timeValue, dateValue);
     setRestaurant(res);
     setTables(res.tables);
+    console.warn(restaurant);
   };
 
   const saveLocation = (id, location) => {
@@ -45,10 +46,10 @@ export default function ReservationPortal() {
 
   useEffect(() => {
     getTheRestaurant();
-  }, []);
+  }, [dateValue, timeValue]);
 
   const dateHandleChange = (date) => {
-    setDateValue(date);
+    setDateValue(moment(date).format('YYYY-MM-DD'));
   };
 
   const timeHandleChange = (e) => {

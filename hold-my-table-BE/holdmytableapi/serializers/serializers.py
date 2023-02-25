@@ -27,7 +27,7 @@ class ReservationSerializer(ModelSerializer):
         model = Reservation
         fields = ('id', 'user', 'table', 'date', 'notes', 'guests')
         depth = 2
-        
+
 class UserSerializer(ModelSerializer):
     """user serializer"""
 
@@ -58,7 +58,7 @@ class TableSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Table
-        fields = ('id', 'reserved', 'restaurant', 'number', 'capacity', 'shape', 'x_coord', 'y_coord', 'reservable', 'reservations', 'reviews', 'rating',)
+        fields = ('id', 'reserved', 'restaurant', 'number', 'capacity', 'shape', 'x_coord', 'y_coord', 'reservable', 'reservations', 'reviews', 'rating')
         depth = 1
 
 class RestaurantImageSerializer(ModelSerializer):
@@ -73,7 +73,7 @@ class RestaurantImageSerializer(ModelSerializer):
 class RestaurantSerializer(ModelSerializer):
     """restaurant serializer"""
 
-    tables = TableSerializer(many=True)
+    # tables = TableSerializer(many=True)
     images = RestaurantImageSerializer(many=True)
 
     class Meta:

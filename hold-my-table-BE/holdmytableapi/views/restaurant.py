@@ -3,8 +3,8 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from holdmytableapi.models import User, Restaurant, Style
-from holdmytableapi.serializers import RestaurantSerializer
+from holdmytableapi.models import User, Restaurant, Style, Table
+from holdmytableapi.serializers import RestaurantSerializer, TableSerializer
 from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single, check_if_reserved
 
 class RestaurantView(ViewSet):
@@ -16,10 +16,18 @@ class RestaurantView(ViewSet):
         restaurant = Restaurant.objects.get(pk=pk)
         date = request.query_params.get('date')
         time = request.query_params.get('time')
+        table_ids = restaurant.tables.values_list('id', flat=True)
+        res_tables = Table.objects.filter(id__in = table_ids)
+        
         if date and time is not None:
-            restaurant.tables.set(check_if_reserved(restaurant.tables.all(), date, time))
+            res_tables = check_if_reserved(res_tables, date, time)
+        
+        data = {}
+        table_serializer = TableSerializer(res_tables, many=True)
         serializer = RestaurantSerializer(restaurant)
-        return Response(snake_case_to_camel_case_single(serializer.data))
+        data = serializer.data
+        data['tables'] = table_serializer.data
+        return Response(snake_case_to_camel_case_single(data))
 
 
     def list(self, request):

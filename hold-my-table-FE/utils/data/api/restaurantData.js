@@ -12,8 +12,8 @@ const getRestaurantByCity = (city) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getSingleRestaurant = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/restaurants/${id}`, {
+const getSingleRestaurant = (id, timeValue, dateValue) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/restaurants/${id}?time=${timeValue}&date=${dateValue}`, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from holdmytableapi.models import Restaurant, Table
 from holdmytableapi.serializers import TableSerializer
-from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single
+from holdmytableapi.helpers import snake_case_to_camel_case_many, camel_case_to_snake_case, snake_case_to_camel_case_single, check_if_reserved
 
 
 class TableView(ViewSet):
@@ -23,6 +23,12 @@ class TableView(ViewSet):
         """get multiple tables"""
 
         tables = Table.objects.all()
+
+        date = request.query_params.get('date')
+        time = request.query_params.get('time')
+        if date and time is not None:
+            tables = check_if_reserved(tables, date, time)
+        print(tables[0].reserved)
         serializer = TableSerializer(tables, many=True)
         data = snake_case_to_camel_case_many(serializer.data)
         return Response(data)

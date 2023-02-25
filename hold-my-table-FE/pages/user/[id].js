@@ -10,7 +10,6 @@ export default function ProfilePage() {
 
   const getData = () => {
     setReservations(user.reservations);
-    console.warn(user);
   };
 
   const onUpdate = () => {
