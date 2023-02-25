@@ -7,7 +7,6 @@ import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
 import ReservationPicker from '../../components/reservations/datePicker';
-import { checkReservedTables } from '../../utils/data/api/tableData';
 import getCurrentDate from '../../utils/data/currentDate';
 
 export default function ReservationPortal() {
@@ -26,14 +25,6 @@ export default function ReservationPortal() {
     const res = await getSingleRestaurant(restaurantId);
     setRestaurant(res);
     setTables(res.tables);
-    const tableIds = tables?.map((table) => table.id);
-    const payload = {
-      tables: tableIds,
-      time: timeValue,
-      date: dateValue,
-    };
-    console.warn(payload);
-    checkReservedTables(payload).then(setTables);
   };
 
   const saveLocation = (id, location) => {

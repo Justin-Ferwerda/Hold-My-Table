@@ -19,17 +19,6 @@ class UserStyleSerializer(ModelSerializer):
         fields = ('id', 'user', 'style')
         depth = 1
 
-class UserSerializer(ModelSerializer):
-    """user serializer"""
-
-    styles = UserStyleSerializer(many=True)
-
-    class Meta:
-        """fields"""
-        model = User
-        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles')
-        depth = 1
-
 class ReservationSerializer(ModelSerializer):
     """reservation serializer"""
 
@@ -37,6 +26,18 @@ class ReservationSerializer(ModelSerializer):
         """fields"""
         model = Reservation
         fields = ('id', 'user', 'table', 'date', 'notes')
+        depth = 2
+        
+class UserSerializer(ModelSerializer):
+    """user serializer"""
+
+    styles = UserStyleSerializer(many=True)
+    reservations = ReservationSerializer(many=True)
+
+    class Meta:
+        """fields"""
+        model = User
+        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles', 'reservations')
         depth = 1
 
 class ReviewSerializer(ModelSerializer):

@@ -5,14 +5,17 @@ import Head from 'next/head';
 import { getSingleRestaurant } from '../../utils/data/api/restaurantData';
 import RestaurantCard from '../../components/restaurants/RestaurantCard';
 import BookTable from '../../components/restaurants/BookTable';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function SingleRestaurant() {
   const router = useRouter();
   const { id } = router.query;
   const [res, setRes] = useState({});
+  const { user } = useAuth();
 
   const getRestaurant = () => {
     getSingleRestaurant(id).then(setRes);
+    console.warn(user);
   };
 
   useEffect(() => {

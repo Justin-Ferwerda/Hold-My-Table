@@ -17,4 +17,10 @@ class User(models.Model):
 
         styles = [style for style in self.user_styles.all()]
         return styles
-    
+
+    @property
+    def reservations(self):
+        """user reservations"""
+
+        reservations = [res for res in self.user_reservations.all()]
+        return reservations
