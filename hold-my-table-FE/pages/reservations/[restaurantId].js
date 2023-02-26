@@ -8,6 +8,7 @@ import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
 import ReservationPicker from '../../components/reservations/datePicker';
+import formattedDate from '../../utils/helpers/dateFormatter';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -25,7 +26,6 @@ export default function ReservationPortal() {
     const res = await getSingleRestaurant(restaurantId, timeValue, dateValue);
     setRestaurant(res);
     setTables(res.tables);
-    console.warn(restaurant);
   };
 
   const saveLocation = (id, location) => {
@@ -49,7 +49,7 @@ export default function ReservationPortal() {
   }, [dateValue, timeValue]);
 
   const dateHandleChange = (date) => {
-    setDateValue(moment(date).format('YYYY-MM-DD'));
+    setDateValue(formattedDate(date));
   };
 
   const timeHandleChange = (e) => {
@@ -80,7 +80,7 @@ export default function ReservationPortal() {
         </div>
       ) : <ReservationPicker {...dateProps} />}
       {
-        tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} />)
+        tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} user={user} />)
       }
     </>
   );

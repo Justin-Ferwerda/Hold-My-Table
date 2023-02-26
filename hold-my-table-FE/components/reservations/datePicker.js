@@ -42,7 +42,7 @@ export default function ReservationPicker({
           onChange={timeHandleChange}
         >
           {timeOptions.map((option) => (
-            <MenuItem value={option.value}>{option.label}</MenuItem>
+            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
           ))}
         </Select>
       </FormControl>
@@ -56,7 +56,7 @@ export default function ReservationPicker({
           onChange={guestHandleChange}
         >
           {guestOptions.map((option) => (
-            <MenuItem value={option}>{option} guests</MenuItem>
+            <MenuItem key={option} value={option}>{option} guests</MenuItem>
           ))}
         </Select>
       </FormControl>
