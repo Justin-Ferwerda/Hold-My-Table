@@ -5,8 +5,9 @@
     "fields": {
       "user": 1,
       "table": 1,
-      "date": "2023-2-12 19:30:00",
-      "notes": "peanut allergy"
+      "date": "2023-2-26 19:30:00",
+      "notes": "peanut allergy",
+      "guests": 2
     }
   }
 ]

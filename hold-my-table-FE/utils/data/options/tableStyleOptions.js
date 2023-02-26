@@ -1,12 +1,13 @@
 const circleStyles = {
-  width: '50px',
-  height: '50px',
+  width: '100px',
+  height: '100px',
   borderRadius: '50%',
 };
 
 const squareStyles = {
   width: '100px',
   height: '100px',
+  borderRadius: '15px',
 };
 
 const rectangleStyles = {

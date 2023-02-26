@@ -7,7 +7,7 @@ import Seat from './seat';
 import TableModal from './tableModal';
 
 export default function Table({
-  table, xCoord, yCoord, saveLocation, editMode, dateProps, onUpdate,
+  table, xCoord, yCoord, saveLocation, editMode, dateProps, onUpdate, user,
 }) {
   const [{ x, y }, api] = useSpring(() => ({ x: xCoord, y: yCoord }));
   const [show, setShow] = useState(false);
@@ -27,7 +27,7 @@ export default function Table({
     } : () => null,
   });
 
-  let styleOptions = table.isReserved ? { backgroundColor: 'red' } : { backgroundColor: 'blue' };
+  let styleOptions = table.reserved && user.id !== table.restaurant.admin_user ? { backgroundColor: '#FF7276' } : { backgroundColor: '#ADD8E6' };
 
   if (table.shape === 'circle') {
     styleOptions = { ...styleOptions, ...circleStyles };
@@ -60,7 +60,10 @@ Table.propTypes = {
     capacity: PropTypes.number,
     shape: PropTypes.string,
     rating: PropTypes.number,
-    isReserved: PropTypes.bool,
+    reserved: PropTypes.bool,
+    restaurant: PropTypes.shape({
+      admin_user: PropTypes.number,
+    }),
   }).isRequired,
   saveLocation: PropTypes.func.isRequired,
   xCoord: PropTypes.number.isRequired,
@@ -68,4 +71,7 @@ Table.propTypes = {
   editMode: PropTypes.bool.isRequired,
   dateProps: PropTypes.shape({}).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
 };

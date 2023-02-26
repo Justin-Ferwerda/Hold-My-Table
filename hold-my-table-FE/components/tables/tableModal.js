@@ -6,26 +6,18 @@ import Link from 'next/link';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import StarRating from '../utility/StarRating';
+import formattedDate from '../../utils/helpers/dateFormatter';
 
 export default function TableModal({
   show, handleClose, table, dateProps,
 }) {
   const router = useRouter();
 
-  const formattedDate = () => {
-    const date = dateProps.dateValue;
-    const year = date.$y;
-    const month = `${date.$M < 10 ? '0' : ''}${date.$M}`;
-    const day = `${date.$D < 10 ? '0' : ''}${date.$D}`;
-    const newDate = ''.concat(year, '-', month, '-', day);
-    return newDate;
-  };
-
   const sendData = () => {
     router.push({
       pathname: '/reservations/confirm',
       query: {
-        dateValue: formattedDate(),
+        dateValue: formattedDate(dateProps.dateValue),
         timeValue: dateProps.timeValue,
         guestValue: dateProps.guestValue,
         table: table.id,
@@ -48,7 +40,7 @@ export default function TableModal({
               ({table.reviews.length}) review{table.reviews.length > 1 ? 's' : ''}
             </div>
           </Link>
-          {!table.isReserved ? <Button variant="contained" className="book-btn" onClick={sendData}>Book Now</Button> : <div />}
+          {!table.reserved ? <Button variant="contained" className="book-btn" onClick={sendData}>Book Now</Button> : <div />}
         </Modal.Body>
       </Modal>
     </>
@@ -65,6 +57,6 @@ TableModal.propTypes = {
       banner_pic: PropTypes.string,
     }).isRequired,
     rating: PropTypes.number,
-    reviews: PropTypes.shape([]).isRequired,
+    reviews: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   }).isRequired,
 };

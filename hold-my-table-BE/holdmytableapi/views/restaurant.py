@@ -18,10 +18,10 @@ class RestaurantView(ViewSet):
         time = request.query_params.get('time')
         table_ids = restaurant.tables.values_list('id', flat=True)
         res_tables = Table.objects.filter(id__in = table_ids)
-        
+
         if date and time is not None:
             res_tables = check_if_reserved(res_tables, date, time)
-        
+
         data = {}
         table_serializer = TableSerializer(res_tables, many=True)
         serializer = RestaurantSerializer(restaurant)
