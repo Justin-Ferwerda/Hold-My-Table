@@ -6,19 +6,22 @@ function Home() {
   const { restaurants } = useRestaurant();
 
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      {restaurants.map((restaurant) => (
-        <MainRestaurantCard key={restaurant.id} restaurant={restaurant} src={restaurant.bannerPic} />
-      ))}
-    </div>
+    <>
+      <div
+        className="text-center d-flex flex-row justify-content-center align-content-center restaurant-container"
+        style={{
+          height: '50vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        {restaurants.map((restaurant) => (
+          <MainRestaurantCard key={restaurant.id} restaurant={restaurant} src={restaurant.bannerPic} />
+        ))}
+      </div>
+    </>
+
   );
 }
 

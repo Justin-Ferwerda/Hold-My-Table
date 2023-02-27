@@ -45,6 +45,8 @@ function RegisterForm({ user, updateUser }) {
 
   const getTheStyles = () => {
     getStyles().then(setStyles);
+    console.warn(user);
+    console.warn(selected);
   };
 
   useEffect(() => {
@@ -54,8 +56,8 @@ function RegisterForm({ user, updateUser }) {
         // eslint-disable-next-line react/prop-types
         user?.styles?.map((style) => (
           {
-            value: style.id,
-            label: style.label,
+            value: style.style.id,
+            label: style.style.label,
           }
         ));
       });
