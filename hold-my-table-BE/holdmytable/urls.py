@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
-from holdmytableapi.views import check_user, register_user, UserView, RestaurantView, StyleView, TableView, ReservationView
+from holdmytableapi.views import check_user, register_user, UserView, RestaurantView, StyleView, TableView, ReservationView, ReviewView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
@@ -25,6 +25,7 @@ router.register(r'restaurants', RestaurantView, 'restaurant')
 router.register(r'styles', StyleView, 'style')
 router.register(r'tables', TableView, 'table')
 router.register(r'reservations', ReservationView, 'reservation')
+router.register(r'reviews', ReviewView, 'review')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
