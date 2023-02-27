@@ -31,15 +31,15 @@ function RegisterForm({ user, updateUser }) {
   };
 
   const styleHandleChange = (selectedOptions) => {
-    setSelected(selectedOptions.map((option) => option.value));
+    setSelected(selectedOptions);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user?.id) {
-      updateUserProfile({ ...formData, styleIds: selected, profileImageUrl: user.profileImageUrl }).then(() => updateUser(user.uid)).then(() => router.push(`/user/${user.id}`));
+      updateUserProfile({ ...formData, styles: selected, id: user.id }).then(() => updateUser(user.uid)).then(() => router.push(`/user/${user.id}`));
     } else {
-      registerUser({ ...formData, styleIds: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/'));
+      registerUser({ ...formData, styles: selected, profileImageUrl: user.fbUser.photoURL }).then(() => updateUser(user.uid)).then(() => router.push('/'));
     }
   };
 
@@ -88,6 +88,7 @@ function RegisterForm({ user, updateUser }) {
           isMulti
           name="styles"
           options={styleOptions}
+          value={selected}
           className="basic-multi-select"
           classNamePrefix="select"
           onChange={styleHandleChange}

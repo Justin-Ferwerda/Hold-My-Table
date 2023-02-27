@@ -109,6 +109,7 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem className="signOut-btn" onClick={signMeOut}>Sign Out</MenuItem>
+                <MenuItem className="my-account-btn" onClick={() => router.push(`/user/${user.id}`)}>My Account</MenuItem>
               </Menu>
             </div>
             )}
