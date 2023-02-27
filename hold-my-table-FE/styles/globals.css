@@ -21,8 +21,23 @@ body {
   background-color: white;
 }
 
+/* 
+navbar
+*/
+
+.nav-container {
+  position: relative;
+}
+
 .navbar {
   background-color: white;
+}
+
+.sidebar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
 .seat {
@@ -52,6 +67,7 @@ body {
 
 .book-table-component {
   grid-column: 1;
+  margin-bottom: 8px;
 }
 
 .recommendations {
@@ -73,4 +89,31 @@ body {
 .layout-container {
   width: 50vh;
   height: 50vh;
+}
+
+/* 
+RestaurantCard Component in single restaurant view
+*/
+
+.bio {
+  border-bottom: 1px solid black;
+  padding-bottom: 3px;
+}
+
+.r-name {
+  border-bottom: 1px solid black;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.r-style {
+  margin-top: 10px;
+}
+
+.r-rating {
+  display: inline-flex;
+}
+
+.r-rating-number {
+  margin-right: 6px;
 }

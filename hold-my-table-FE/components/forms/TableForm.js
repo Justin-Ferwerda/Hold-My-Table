@@ -21,8 +21,9 @@ export default function TableForm({
   useEffect(() => {
     if (table.id) {
       setReservable(table.reservable);
+      setFormData(table);
     }
-  }, [table.id, table.reservable]);
+  }, [table.id, table.reservable, table]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +37,7 @@ export default function TableForm({
     e.preventDefault();
     if (table?.id) {
       updateTable(formData).then(() => onUpdate());
+      handleClose();
     } else {
       createTable(formData).then(() => onUpdate());
       handleClose();

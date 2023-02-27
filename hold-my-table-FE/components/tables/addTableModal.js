@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 import TableForm from '../forms/TableForm';
 
 export default function AddTableModal({
@@ -12,10 +13,11 @@ export default function AddTableModal({
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <>
       <IconButton aria-label="add table" onClick={handleShow}>
-        <AddIcon />
+        {table.id ? <EditIcon style={{ color: 'black' }} /> : <AddIcon />}
       </IconButton>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="modalHeader" closeButton>

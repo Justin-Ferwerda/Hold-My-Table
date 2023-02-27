@@ -48,6 +48,18 @@ const checkReservedTables = (tableIds) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const deleteTable = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/tables/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => resolve(response))
+    .catch((error) => reject(error));
+});
+
 export {
-  getSingleTable, updateTable, createTable, checkReservedTables,
+  getSingleTable, updateTable, createTable, checkReservedTables, deleteTable,
 };

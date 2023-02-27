@@ -51,36 +51,37 @@ export default function MenuAppBar() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar position="static">
-        <Toolbar className="navbar">
-          <Link href="/" passHref>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 5 }}
-            >
-              <Image src="/images/navlogo.png" style={{ height: 120, width: 120 }} />
-            </IconButton>
-          </Link>
-          <FormControl style={{ width: 250 }}>
-            <InputLabel id="demo-simple-select-label">City</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={city}
-              label="city"
-              onChange={cityHandleChange}
-            >
-              <MenuItem value="Nashville">Nashville</MenuItem>
-              <MenuItem value="New York">New York</MenuItem>
-              <MenuItem value="Los Angeles">Los Angeles</MenuItem>
-            </Select>
-          </FormControl>
-          <SearchBar restaurants={restaurants} handleChange={searchHandleChange} />
-          {auth && (
+    <div className="nav-container">
+      <Box sx={{ display: 'flex' }}>
+        <AppBar position="static">
+          <Toolbar className="navbar">
+            <Link href="/" passHref>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 5 }}
+              >
+                <Image src="/images/navlogo.png" style={{ height: 120, width: 120 }} />
+              </IconButton>
+            </Link>
+            <FormControl style={{ width: 250 }}>
+              <InputLabel id="demo-simple-select-label">City</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={city}
+                label="city"
+                onChange={cityHandleChange}
+              >
+                <MenuItem value="Nashville">Nashville</MenuItem>
+                <MenuItem value="New York">New York</MenuItem>
+                <MenuItem value="Los Angeles">Los Angeles</MenuItem>
+              </Select>
+            </FormControl>
+            <SearchBar restaurants={restaurants} handleChange={searchHandleChange} />
+            {auth && (
             <div>
               <IconButton
                 size="large"
@@ -110,9 +111,11 @@ export default function MenuAppBar() {
                 <MenuItem className="signOut-btn" onClick={signMeOut}>Sign Out</MenuItem>
               </Menu>
             </div>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+            )}
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </div>
+
   );
 }
