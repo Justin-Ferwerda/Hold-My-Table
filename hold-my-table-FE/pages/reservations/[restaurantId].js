@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import moment from 'moment/moment';
 import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
@@ -73,7 +73,7 @@ export default function ReservationPortal() {
     <>
       {user.id === restaurant?.adminUser?.id ? (
         <div className="user-buttons">
-          <Button onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
+          <Button variant="contained" onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
           <div>
             <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} /> Table
           </div>

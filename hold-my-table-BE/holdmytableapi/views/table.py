@@ -54,14 +54,13 @@ class TableView(ViewSet):
     def update(self, request, pk):
         """handles update requests for tables"""
         data = camel_case_to_snake_case(request.data)
-        restaurant = Restaurant.objects.get(pk=data['restaurant'])
+        restaurant = Restaurant.objects.get(pk=data['restaurant']['id'])
         table = Table.objects.get(pk=pk)
 
         table.restaurant = restaurant
         table.number = data['number']
         table.capacity = data['capacity']
         table.shape = data['shape']
-        table.is_reserved = data['is_reserved']
         table.x_coord = data['x_coord']
         table.y_coord = data['y_coord']
         table.reservable = data['reservable']

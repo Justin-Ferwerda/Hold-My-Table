@@ -15,18 +15,19 @@ export default function RestaurantCard({ restaurant, src }) {
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title">{restaurant.name}</h5>
-            <StarRating rating={restaurant.rating} />
-            <p className="card-text">{restaurant.bio}</p>
+            <h5 className="card-title r-name">{restaurant.name}</h5>
+            <p className="card-text bio">{restaurant.bio}</p>
             <p className="card-text"><a href={restaurant.websiteUrl} target="_blank" rel="noreferrer"><LanguageIcon /> {restaurant.websiteUrl}</a></p>
             <p className="card-text">
               <a href={`https://www.instagram.com/${restaurant.instagram}/?hl=en`} target="_blank" rel="noreferrer">
                 <InstagramIcon /> @{restaurant.instagram}
               </a>
             </p>
-            <p className="card-text">
-              {restaurant?.style?.label} {restaurant.priceTier}
-            </p>
+            <div className="r-rating">
+              <div className="r-rating-number">{restaurant.rating}</div>  <StarRating rating={restaurant.rating} />
+            </div>
+            <p className="card-text r-style">{restaurant?.style?.label}</p>
+            <p>{restaurant.priceTier}</p>
           </div>
         </div>
       </div>

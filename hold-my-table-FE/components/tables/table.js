@@ -2,9 +2,13 @@ import PropTypes from 'prop-types';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 import { circleStyles, rectangleStyles, squareStyles } from '../../utils/data/options/tableStyleOptions';
 import Seat from './seat';
 import TableModal from './tableModal';
+import AddTableModal from './addTableModal';
+import { deleteTable } from '../../utils/data/api/tableData';
 
 export default function Table({
   table, xCoord, yCoord, saveLocation, editMode, dateProps, onUpdate, user,
@@ -16,6 +20,12 @@ export default function Table({
   for (let i = 0; i < table.capacity; i++) {
     seats.push(<Seat key={i} />);
   }
+
+  const deleteThisTable = () => {
+    if (window.confirm('Delete This Table?')) {
+      deleteTable(table.id).then(() => onUpdate());
+    }
+  };
 
   const bind = useGesture({
     onDrag: editMode ? ({ down, offset: [ox, oy] }) => api.start({ x: ox, y: oy, immediate: down }) : () => null,
@@ -47,6 +57,14 @@ export default function Table({
         }}
       >
         {seats}
+        {user.id === table.restaurant.admin_user ? (
+          <div className="edit-delete-table">
+            <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
+            <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisTable}>
+              <DeleteIcon style={{ color: 'black' }} />
+            </IconButton>
+          </div>
+        ) : <div />}
         <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />
       </animated.div>
     </div>
