@@ -31,13 +31,12 @@ class UserView(ViewSet):
         user.last_name = data['last_name']
         user.email = data['email']
         user.phone = data['phone']
-        user.profile_image_url = data['profile_image_url']
 
         for style in  UserStyle.objects.filter(user=user):
             style.delete()
 
         for style in request.data['styles']:
-            genre = Style.objects.get(pk=style.value)
+            genre = Style.objects.get(pk=style['value'])
             user_style = UserStyle(
             user = user,
             style = genre

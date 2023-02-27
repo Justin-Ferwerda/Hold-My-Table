@@ -43,8 +43,8 @@ def register_user(request):
         profile_image_url = data['profile_image_url']
     )
 
-    for style in data['style_ids']:
-        genre = Style.objects.get(pk=style)
+    for style in data['styles']:
+        genre = Style.objects.get(pk=style.value)
         user_style = UserStyle(
         user = user,
         style = genre
