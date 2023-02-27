@@ -12,8 +12,11 @@ export default function MainRestaurantCard({ restaurant, src }) {
         <img className="card-img-top" src={src} />
         <Card.Body className="restaurant-card-body">
           <Card.Text>{restaurant.name}</Card.Text>
-          <StarRating rating={restaurant.rating} />
-          <Card.Text>{restaurant?.style?.label} {restaurant.priceTier}</Card.Text>
+          <div className="card-star-rating">
+            <StarRating rating={restaurant.rating} />
+          </div>
+          <Card.Text>{restaurant?.style?.label} </Card.Text>
+          <Card.Text>{restaurant.priceTier}</Card.Text>
         </Card.Body>
       </Card>
     </div>
