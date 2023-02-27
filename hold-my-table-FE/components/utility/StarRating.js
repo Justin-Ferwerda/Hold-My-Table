@@ -10,6 +10,7 @@ export default function StarRating({ rating, readonly, handleRating }) {
         allowFraction
         iconsCount={5}
         ratingValue={rating}
+        initialValue={rating}
         readonly={readonly}
         onClick={handleRating}
         tooltipStyle={{

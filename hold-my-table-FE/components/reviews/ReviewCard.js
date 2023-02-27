@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
-  FormControl,
+  Form,
 } from 'react-bootstrap';
 import { Avatar } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,10 +17,13 @@ import { deleteReview, updateReview } from '../../utils/data/api/reviewData';
 export default function ReviewCard({ review, onUpdate }) {
   const [readonly, setReadOnly] = useState(true);
   const { user } = useAuth();
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({
+    rating: review.rating,
+    content: review.content,
+  });
 
   const deleteThisReview = () => {
-    if (window.confirm('Delete This Table?')) {
+    if (window.confirm('Delete Review?')) {
       deleteReview(review.id).then(() => onUpdate());
     }
   };
@@ -31,17 +34,21 @@ export default function ReviewCard({ review, onUpdate }) {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      const name = 'content';
-      const value = e;
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
       const payload = {
         ...formData, id: review.id,
       };
-      updateReview(payload).then(() => onUpdate);
+      console.warn(payload);
+      updateReview(payload).then(() => onUpdate());
+      setReadOnly(true);
     }
+  };
+
+  const handleContent = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleRating = (e) => {
@@ -61,18 +68,21 @@ export default function ReviewCard({ review, onUpdate }) {
           <Avatar src={review.user.profile_image_url} />
           <Card.Text>{review.user.first_name} {review.user.last_name}</Card.Text>
           <StarRating rating={review.rating} readonly={readonly} handleRating={handleRating} />
-          <FormControl
+          <Form.Control
             className="review-content"
             readOnly={readonly}
             type="text"
-            value={review.content}
-            placeholder=""
+            name="content"
+            value={formData.content}
+            placeholder="content"
+            onChange={handleContent}
             onKeyDown={handleKeyDown}
+
           />
         </Card.Body>
         {user.id === review?.user?.id ? (
           <>
-            <IconButton aria-label="edit" className="edit-btn" handleClick={editHandleClick}>
+            <IconButton aria-label="edit" className="edit-btn" onClick={editHandleClick}>
               <EditIcon style={{ color: 'black' }} />
             </IconButton>
             <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisReview}>

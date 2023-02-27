@@ -1,5 +1,4 @@
 """Viewset for Tables"""
-from datetime import datetime, timedelta
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -92,47 +91,3 @@ class TableView(ViewSet):
             table_to_save.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-
-    @action(methods=['post'], detail=False)
-    def check_if_reserved(self, request):
-        """checks if table is reserved and sets reserved tables"""
-        time = request.data['time']
-        date = request.data['date']
-        table_ids = request.data['tables']
-
-        year, month, day = date.split('-')
-        hour, minutes, seconds = time.split(':')
-
-        request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
-
-        tables = []
-
-        for table_id in table_ids:
-            table = Table.objects.get(pk=table_id)
-            reservations = table.table_reservations.all()
-            for res in reservations:
-                date, time = str(res.date).split(' ')
-
-                year, month, day = date.split('-')
-                hour, minutes, seconds, _ = time[:-1].split(':')
-
-                secs, _ = seconds.split('+')
-
-                res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(secs))
-
-                diff_1 = request_date - res_date
-                diff_2 = res_date - request_date
-
-                if diff_1 <= timedelta(minutes=90) or diff_2 <= timedelta(minutes=90):
-                    table.reserved = True
-
-                else:
-                    table.reserved = False
-
-
-            tables.append(table)
-
-        serializer = TableSerializer(tables, many=True)
-
-
-        return Response(serializer.data)

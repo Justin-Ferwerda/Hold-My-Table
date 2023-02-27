@@ -21,7 +21,7 @@ const deleteReview = (id) => new Promise((resolve, reject) => {
       'content-type': 'application/json',
     },
   })
-    .then((response) => resolve(response.json()))
+    .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
 

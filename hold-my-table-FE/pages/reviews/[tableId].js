@@ -12,7 +12,6 @@ export default function TableReviewPage() {
   const getTheTable = () => {
     getSingleTable(tableId).then((res) => {
       setReviews(res.reviews);
-      console.warn(res);
     });
   };
 
@@ -22,7 +21,7 @@ export default function TableReviewPage() {
 
   return (
     <>
-      {reviews?.map((review) => <ReviewCard key={review.id} review={review} />)}
+      {reviews?.map((review) => <ReviewCard key={review.id} review={review} onUpdate={getTheTable} />)}
     </>
 
   );
