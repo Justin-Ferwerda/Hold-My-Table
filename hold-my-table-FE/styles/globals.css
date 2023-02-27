@@ -117,3 +117,16 @@ RestaurantCard Component in single restaurant view
 .r-rating-number {
   margin-right: 6px;
 }
+
+/*
+reviews
+*/
+
+.review-card {
+  display: flex;
+  flex-flow: row;
+}
+
+.review-content {
+  border: none;
+}

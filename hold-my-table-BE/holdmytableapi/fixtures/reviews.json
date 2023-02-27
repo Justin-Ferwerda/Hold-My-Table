@@ -3,7 +3,7 @@
     "model": "holdmytableapi.review",
     "pk": 1,
     "fields": {
-      "user": 1,
+      "user": 2,
       "table": 1,
       "rating": 4.5,
       "content": "best meal ever!",

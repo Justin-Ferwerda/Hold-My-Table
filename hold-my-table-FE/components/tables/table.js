@@ -57,7 +57,7 @@ export default function Table({
         }}
       >
         {seats}
-        {user.id === table.restaurant.admin_user ? (
+        {user.id === table.restaurant.admin_user && editMode ? (
           <div className="edit-delete-table">
             <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
             <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisTable}>
@@ -65,7 +65,7 @@ export default function Table({
             </IconButton>
           </div>
         ) : <div />}
-        <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />
+        {!editMode ? <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} /> : <div />}
       </animated.div>
     </div>
 

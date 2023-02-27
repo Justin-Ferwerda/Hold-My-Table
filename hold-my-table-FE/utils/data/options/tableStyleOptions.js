@@ -1,18 +1,19 @@
 const circleStyles = {
-  width: '100px',
-  height: '100px',
+  width: '150px',
+  height: '150px',
   borderRadius: '50%',
 };
 
 const squareStyles = {
-  width: '100px',
-  height: '100px',
+  width: '150px',
+  height: '150px',
   borderRadius: '15px',
 };
 
 const rectangleStyles = {
-  width: '75px',
-  height: '50px',
+  width: '150px',
+  height: '225px',
+  borderRadius: '15px',
 };
 
 export { circleStyles, squareStyles, rectangleStyles };
