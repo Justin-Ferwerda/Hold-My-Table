@@ -25,7 +25,10 @@ a {
 }
 
 /* 
+_______________________________
+
 footer
+________________________________
 */
 
 .container {
@@ -40,7 +43,10 @@ footer
 }
 
 /* 
+________________________________
+
 navbar
+_________________________________
 */
 
 .nav-container {
@@ -53,7 +59,10 @@ navbar
 }
 
 /* 
+____________________________
+
 table styling
+_____________________________
 */
 
 .seat {
@@ -61,6 +70,7 @@ table styling
   width: 15px;
   border-radius: 50%;
   background-color: gray;
+  border: 1px solid black;
   border-color: black;
   margin-top: 8px;
 }
@@ -98,17 +108,88 @@ table styling
   color: blue;
 }
 
+/*
+__________________________________
+
+restaurant layout
+__________________________________
+*/
+
 .date-picker {
   margin-top: 30px;
 }
 
 .layout-container {
-  width: 50vh;
-  height: 50vh;
+  display: flex;
+}
+
+.table-container {
+  height: 75vh;
+  width: 75vw;
+  border: 1px solid black;
+  margin: 25px;
+}
+
+.layout-key {
+  display: flex;
+  height: 75vh;
+  width: 20vw;
+  border: 1px solid black;
+  margin: 25px;
+  flex-direction: column;
+}
+
+.seat-key {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: gray;
+  border: 1px solid black;
+  border-color: black;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.available-key {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: #ADD8E6;
+  border: 1px solid black;
+  border-color: black;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.reserved-key {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: #FF7276;
+  border: 1px solid black;
+  border-color: black;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.color-key-container {
+  white-space: nowrap;
+  align-items: center;
+}
+
+.user-buttons {
+  margin-top: 25px;
+}
+
+.layout-instructions {
+  margin: 10px;
 }
 
 /* 
+_____________________________________________
+
 RestaurantCard Component in single restaurant view
+______________________________________________
 */
 
 .bio {
@@ -135,7 +216,11 @@ RestaurantCard Component in single restaurant view
 }
 
 /*
+_______________________________
+
 reviews
+________________________________
+
 */
 
 .review-card {
@@ -148,7 +233,10 @@ reviews
 }
 
 /* 
+____________________________________
+
 Scrolling home page restaurant cards
+____________________________________
 */
 
 .all-restaurants-card {
@@ -165,7 +253,10 @@ Scrolling home page restaurant cards
 }
 
 /*
+____________________________________
+
 restaurant card container
+____________________________________
 */
 
 .restaurant-container {

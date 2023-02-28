@@ -12,3 +12,6 @@ WHERE id = 1
 
 DELETE FROM holdmytableapi_review
 WHERE table_id = 1
+
+DELETE FROM holdmytableapi_table
+WHERE restaurant_id = 1

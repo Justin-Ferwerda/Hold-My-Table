@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
 import moment from 'moment/moment';
 import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
-import AddTableModal from '../../components/tables/addTableModal';
-import ReservationPicker from '../../components/reservations/datePicker';
+import LayoutKey from '../../components/restaurants/layoutKey';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -70,19 +68,26 @@ export default function ReservationPortal() {
     guestValue,
   };
 
+  const layoutProps = {
+    user,
+    restaurant,
+    handleSaveLayout,
+    editMode,
+    onUpdate,
+    setEditMode,
+    dateProps,
+  };
+
   return (
     <>
-      {user.id === restaurant?.adminUser?.id ? (
-        <div className="user-buttons">
-          <Button variant="contained" onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
-          <div>
-            <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} /> Table
-          </div>
-        </div>
-      ) : <ReservationPicker {...dateProps} />}
-      {
+      <div className="layout-container">
+        <LayoutKey {...layoutProps} />
+        <div className="table-container">
+          {
         tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} user={user} />)
       }
+        </div>
+      </div>
     </>
   );
 }
