@@ -160,6 +160,10 @@ Scrolling home page restaurant cards
   margin-bottom: 10px;
 }
 
+.restaurant-card-name:hover {
+  cursor: pointer;
+}
+
 /*
 restaurant card container
 */

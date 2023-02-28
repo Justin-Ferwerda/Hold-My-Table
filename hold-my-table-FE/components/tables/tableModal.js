@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import StarRating from '../utility/StarRating';
-import formattedDate from '../../utils/helpers/dateFormatter';
 
 export default function TableModal({
   show, handleClose, table, dateProps,
@@ -17,7 +16,7 @@ export default function TableModal({
     router.push({
       pathname: '/reservations/confirm',
       query: {
-        dateValue: formattedDate(dateProps.dateValue),
+        dateValue: dateProps.dateValue,
         timeValue: dateProps.timeValue,
         guestValue: dateProps.guestValue,
         table: table.id,
