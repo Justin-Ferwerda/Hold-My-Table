@@ -18,7 +18,7 @@ export default function ReservationPicker({
   return (
     <Stack
       className="date-picker"
-      direction="row"
+      direction="column"
       justifyContent="center"
       alignItems="center"
       spacing={3}

@@ -48,26 +48,24 @@ export default function Table({
   }
 
   return (
-    <div className="layout-container">
-      <animated.div
-        className="table"
-        {...bind()}
-        style={{
-          ...styleOptions, x, y,
-        }}
-      >
-        {seats}
-        {user.id === table.restaurant.admin_user && editMode ? (
-          <div className="edit-delete-table">
-            <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
-            <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisTable}>
-              <DeleteIcon style={{ color: 'black' }} />
-            </IconButton>
-          </div>
-        ) : <div />}
-        {!editMode ? <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} /> : <div />}
-      </animated.div>
-    </div>
+    <animated.div
+      className="table"
+      {...bind()}
+      style={{
+        ...styleOptions, x, y,
+      }}
+    >
+      {seats}
+      {user.id === table.restaurant.admin_user && editMode ? (
+        <div className="edit-delete-table">
+          <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
+          <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisTable}>
+            <DeleteIcon style={{ color: 'black' }} />
+          </IconButton>
+        </div>
+      ) : <div />}
+      {!editMode ? <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} /> : <div />}
+    </animated.div>
 
   );
 }
