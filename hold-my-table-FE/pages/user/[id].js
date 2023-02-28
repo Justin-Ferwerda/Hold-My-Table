@@ -24,7 +24,7 @@ export default function ProfilePage() {
     <>
       <h2>My Reservations</h2>
       <div className="user-reservation-container">
-        {reservations.map((res) => (
+        {reservations?.map((res) => (
           <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
         ))}
       </div>

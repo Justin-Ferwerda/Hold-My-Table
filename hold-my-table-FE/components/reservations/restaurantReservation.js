@@ -26,6 +26,7 @@ export default function RestaurantReservation({ reservation, user, onUpdate }) {
           <Card.Text><PeopleIcon /> {reservation.guests} guests</Card.Text>
           <Card.Text><TableRestaurantIcon />{reservation.table.number}</Card.Text>
           <Card.Text>Contact {reservation.user.first_name} {reservation.user.last_name}</Card.Text>
+          <Card.Text>Notes: {reservation.notes}</Card.Text>
           {user.id === reservation.table.restaurant.admin_user ? <Button variant="outline-secondary" onClick={deleteThisReservation}>Cancel Reservation</Button> : <div /> }
         </Card.Body>
       </Card>
@@ -36,6 +37,7 @@ export default function RestaurantReservation({ reservation, user, onUpdate }) {
 
 RestaurantReservation.propTypes = {
   reservation: PropTypes.shape({
+    notes: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
       first_name: PropTypes.string,

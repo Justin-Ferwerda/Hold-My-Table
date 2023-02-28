@@ -63,8 +63,7 @@ export default function Table({
             <DeleteIcon style={{ color: 'black' }} />
           </IconButton>
         </div>
-      ) : <div />}
-      {!editMode ? <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} /> : <div />}
+      ) : <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />}
     </animated.div>
 
   );

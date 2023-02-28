@@ -42,6 +42,7 @@ export default function MenuAppBar() {
 
   const cityHandleChange = (e) => {
     setCity(e.target.value);
+    router.push('/');
   };
 
   const searchHandleChange = (e, v) => {
