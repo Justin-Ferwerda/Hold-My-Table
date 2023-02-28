@@ -25,7 +25,7 @@ export default function RestaurantForm({ restaurant }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (restaurant.id) {
-      updateRestaurant(restaurant.id).then(() => router.push(`/restaurant/account/${restaurant.id}`));
+      updateRestaurant(formData).then(() => router.push(`/restaurant/account/${restaurant.id}`));
     } else {
       createRestaurant(formData).then(() => router.push(`/restaurant/account/${restaurant.id}`));
     }
@@ -33,7 +33,10 @@ export default function RestaurantForm({ restaurant }) {
 
   useEffect(() => {
     getTheStyles();
-  }, []);
+    if (restaurant.id) {
+      setFormData(restaurant);
+    }
+  }, [restaurant]);
 
   return (
     <>
@@ -71,24 +74,25 @@ export default function RestaurantForm({ restaurant }) {
           <FloatingLabel controlId="floatingInput1" label="Photo URL" className="mb-3">
             <Form.Control type="text" placeholder="Photo Url" name="bannerPic" value={formData.bannerPic} onChange={handleChange} required />
           </FloatingLabel>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Cancellation Policy</Form.Label>
+            <Form.Control as="textarea" rows={3} onChange={handleChange} name="cancellationPolicy" value={formData.cancellationPolicy} />
+          </Form.Group>
+          <h3>What Genre do you classify yourself as?</h3>
+          <FloatingLabel controlId="floatingSelect" label="style">
+            <Form.Select aria-label="style" name="style" onChange={handleChange} className="mb-3" value={formData?.style?.id} required>
+              <option value="">Select a Style</option>
+              {styles?.map((style) => (
+                <option key={style.label} value={style.id}>
+                  {style.label}
+                </option>
+              ))}
+            </Form.Select>
+          </FloatingLabel>
+          <Button type="submit" className="submitButton">{restaurant.id ? 'Save' : 'Create'} Account</Button>
         </Form>
       </div>
       <div className="restaurant-form-RS">
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Cancellation Policy</Form.Label>
-          <Form.Control as="textarea" rows={3} onChange={handleChange} name="cancellationPolicy" value={formData.cancellationPolicy} />
-        </Form.Group>
-        <h3>What Genre do you classify yourself as?</h3>
-        <FloatingLabel controlId="floatingSelect" label="style">
-          <Form.Select aria-label="style" name="style" onChange={handleChange} className="mb-3" value={formData?.style?.id} required>
-            <option value="">Select a Style</option>
-            {styles?.map((style) => (
-              <option key={style.label} value={style.id}>
-                {style.label}
-              </option>
-            ))}
-          </Form.Select>
-        </FloatingLabel>
         <div className="restaurant-form-buttons">
           {!restaurant.id ? (
             <>
@@ -96,7 +100,7 @@ export default function RestaurantForm({ restaurant }) {
               <Button className="add-restaurant-btn" type="submit">Go To Layout Designer</Button>
             </>
           ) : (
-            <Button className="save-restaurant-btn" type="submit">Save Account</Button>
+            <div />
           )}
         </div>
       </div>
