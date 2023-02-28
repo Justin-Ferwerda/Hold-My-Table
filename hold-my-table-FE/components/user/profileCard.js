@@ -34,5 +34,4 @@ UserProfile.propTypes = {
     profileImageUrl: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
-
 };

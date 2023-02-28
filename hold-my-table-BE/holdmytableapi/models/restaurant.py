@@ -6,7 +6,7 @@ from .style import Style
 class Restaurant(models.Model):
     """restaurant attributes"""
     name = models.CharField(max_length=50)
-    admin_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    admin_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='restaurant_admin')
     email = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=50)
     address = models.CharField(max_length=50)

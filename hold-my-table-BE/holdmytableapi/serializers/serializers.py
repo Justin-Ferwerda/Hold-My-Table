@@ -37,7 +37,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = User
-        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles', 'reservations')
+        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles', 'reservations', 'admin')
         depth = 1
 
 class ReviewSerializer(ModelSerializer):
