@@ -24,3 +24,14 @@ class User(models.Model):
 
         reservations = [res for res in self.user_reservations.all()]
         return reservations
+
+    @property
+    def admin(self):
+        """checks if user is an admin of any restaurants"""
+        restaurants = [res for res in self.restaurant_admin.all()]
+        if len(restaurants):
+            admin = True
+        else:
+            admin = False
+
+        return admin
