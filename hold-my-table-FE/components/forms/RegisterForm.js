@@ -46,8 +46,6 @@ function RegisterForm({ user, updateUser }) {
 
   const getTheStyles = () => {
     getStyles().then(setStyles);
-    console.warn(user);
-    console.warn(selected);
   };
 
   useEffect(() => {
