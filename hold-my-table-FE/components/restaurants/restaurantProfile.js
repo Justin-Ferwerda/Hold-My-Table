@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Image } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
 
 export default function RestaurantProfile({ restaurant }) {
@@ -9,16 +9,15 @@ export default function RestaurantProfile({ restaurant }) {
     <div className="restaurantProfileCard">
       <Card>
         <Card.Body>
-          <Image src={restaurant.bannerPic} />
-          <Card.Text>admin email: {restaurant.user.email}</Card.Text>
-          <Card.Text>Name: {restaurant.name}</Card.Text>
-          <Card.Text>Email: {restaurant.email} </Card.Text>
-          <Card.Text>phone: {restaurant.phoneNumber}</Card.Text>
+          <Card.Text>admin email: {restaurant.admin_user?.email}</Card.Text>
+          <Card.Text>name: {restaurant.name}</Card.Text>
+          <Card.Text>email: {restaurant.email} </Card.Text>
+          <Card.Text>phone: {restaurant.phone_number}</Card.Text>
           <Card.Text>address: {restaurant.address}</Card.Text>
-          <Card.Text>website: {restaurant.websiteUrl}</Card.Text>
+          <Card.Text>website: {restaurant.website_url}</Card.Text>
           <Card.Text>instagram: {restaurant.instagram}</Card.Text>
-          <Card.Text>cancellation policy: {restaurant.cancellationPolicy}</Card.Text>
-          <Card.Text>style: {restaurant.style.label}</Card.Text>
+          <Card.Text>cancellation policy: {restaurant.cancellation_policy}</Card.Text>
+          <Card.Text>style: {restaurant.style?.label}</Card.Text>
           <Card.Text>price tier: {restaurant.priceTier}</Card.Text>
           <Card.Text>bio: {restaurant.bio}</Card.Text>
           <Link href={`/restaurants/edit/${restaurant.id}`} passHref>
@@ -36,18 +35,18 @@ RestaurantProfile.propTypes = {
     bannerPic: PropTypes.string,
     name: PropTypes.string,
     email: PropTypes.string,
-    phoneNumber: PropTypes.string,
+    phone_number: PropTypes.string,
     address: PropTypes.string,
-    websiteUrl: PropTypes.string,
+    website_url: PropTypes.string,
     instagram: PropTypes.string,
-    cancellationPolicy: PropTypes.string,
+    cancellation_policy: PropTypes.string,
     priceTier: PropTypes.string,
     bio: PropTypes.string,
     id: PropTypes.number,
     style: PropTypes.shape({
       label: PropTypes.string,
     }),
-    user: PropTypes.shape({
+    admin_user: PropTypes.shape({
       email: PropTypes.string,
     }),
   }).isRequired,

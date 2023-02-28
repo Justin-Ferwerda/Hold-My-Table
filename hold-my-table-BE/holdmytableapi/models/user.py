@@ -21,9 +21,9 @@ class User(models.Model):
     @property
     def reservations(self):
         """user reservations"""
-
         reservations = [res for res in self.user_reservations.all()]
-        return reservations
+        if len(reservations):
+            return reservations
 
     @property
     def admin(self):
@@ -35,3 +35,10 @@ class User(models.Model):
             admin = False
 
         return admin
+
+    @property
+    def admin_restaurant(self):
+        """gets admin restaurant"""
+        restaurant = [res for res in self.restaurant_admin.all()]
+        if len(restaurant):
+            return restaurant.pop(0)

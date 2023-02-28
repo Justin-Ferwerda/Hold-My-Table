@@ -32,7 +32,7 @@ class ReservationView(ViewSet):
         data = camel_case_to_snake_case(request.data)
         user = User.objects.get(pk=data['user'])
         table = Table.objects.get(pk=data['table'])
-        
+
         date = str(data['date_value'] + ' ' + data['time_value'])
 
         reservation = Reservation.objects.create(

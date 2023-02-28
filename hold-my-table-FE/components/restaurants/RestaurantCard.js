@@ -15,7 +15,7 @@ export default function RestaurantCard({ restaurant, src }) {
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title r-name">{restaurant.name}</h5>
+            <h5 className="card-title r-name"><strong>{restaurant.name}</strong></h5>
             <p className="card-text bio">{restaurant.bio}</p>
             <p className="card-text"><a href={restaurant.websiteUrl} target="_blank" rel="noreferrer"><LanguageIcon /> {restaurant.websiteUrl}</a></p>
             <p className="card-text">

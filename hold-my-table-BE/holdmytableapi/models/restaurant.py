@@ -18,16 +18,6 @@ class Restaurant(models.Model):
     price_tier = models.CharField(max_length=4)
     bio = models.CharField(max_length=500)
 
-    # @property
-    # def tables(self):
-    #     """restaurant tables"""
-    #     _tables = [table for table in self.tables.all()]
-    #     return _tables
-
-    # @tables.setter
-    # def tables(self, value):
-    #     self._tables = value
-
     @property
     def images(self):
         """restaurant images"""
@@ -46,3 +36,9 @@ class Restaurant(models.Model):
             return rating
         else:
             return 0
+
+    @property
+    def reservations(self):
+        """gets reservations from all table in restaurant"""
+        reservations = [reservation for table in self.tables.all() for reservation in table.reservations]
+        return reservations
