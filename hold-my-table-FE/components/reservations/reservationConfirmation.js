@@ -11,7 +11,7 @@ import { createReservation } from '../../utils/data/api/reservationData';
 export default function Confirmation({
   dateValue, timeValue, guestValue, table, restaurant,
 }) {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const router = useRouter();
 
   const payload = {
@@ -29,8 +29,7 @@ export default function Confirmation({
   const time = moment(timeValue, 'HH:mm:ss').format('h:mm A');
 
   const handleClick = () => {
-    console.warn(payload);
-    createReservation(payload).then(() => router.push(`/user/${user.id}`));
+    createReservation(payload).then(() => updateUser(user.uid)).then(() => router.push(`/user/${user.id}`));
   };
 
   return (

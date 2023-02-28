@@ -8,7 +8,6 @@ import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import AddTableModal from '../../components/tables/addTableModal';
 import ReservationPicker from '../../components/reservations/datePicker';
-import formattedDate from '../../utils/helpers/dateFormatter';
 
 export default function ReservationPortal() {
   const router = useRouter();

@@ -19,7 +19,7 @@ const deleteReservation = (id) => new Promise((resolve, reject) => {
       'content-type': 'application/json',
     },
   })
-    .then((response) => resolve(response.json()))
+    .then(resolve)
     .catch((error) => reject(error));
 });
 
