@@ -19,20 +19,20 @@ export default function ReservationPicker({
     <Stack
       className="date-picker"
       direction="row"
-      justifyContent="space-evenly"
+      justifyContent="center"
       alignItems="center"
-      spacing={2}
+      spacing={3}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
-          label="Date desktop"
+          label="Reservation Date"
           inputFormat="MM/DD/YYYY"
           value={dateValue}
           onChange={dateHandleChange}
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
-      <FormControl fullWidth>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">Time</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -46,7 +46,7 @@ export default function ReservationPicker({
           ))}
         </Select>
       </FormControl>
-      <FormControl fullWidth>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">Guests</InputLabel>
         <Select
           labelId="demo-simple-select-label"

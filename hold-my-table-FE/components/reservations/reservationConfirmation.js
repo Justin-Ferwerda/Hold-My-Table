@@ -18,9 +18,10 @@ export default function Confirmation({
     dateValue,
     timeValue,
     guestValue,
-    table,
+    table: Number(table),
     user: user.id,
     policy: restaurant.cancellationPolicy,
+    notes: '',
   };
 
   const date = moment(dateValue).format('MMM Do YYYY');
@@ -28,7 +29,8 @@ export default function Confirmation({
   const time = moment(timeValue, 'HH:mm:ss').format('h:mm A');
 
   const handleClick = () => {
-    createReservation(payload).then(() => router.push('/'));
+    console.warn(payload);
+    createReservation(payload).then(() => router.push(`/user/${user.id}`));
   };
 
   return (

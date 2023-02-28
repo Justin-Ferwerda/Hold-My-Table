@@ -49,7 +49,9 @@ export default function ReservationPortal() {
   }, [dateValue, timeValue]);
 
   const dateHandleChange = (date) => {
-    setDateValue(formattedDate(date));
+    const dateObj = new Date(date);
+    const dateFormat = dateObj.toISOString().slice(0, 10);
+    setDateValue(dateFormat);
   };
 
   const timeHandleChange = (e) => {

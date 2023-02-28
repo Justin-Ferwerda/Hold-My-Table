@@ -32,13 +32,16 @@ class ReservationView(ViewSet):
         data = camel_case_to_snake_case(request.data)
         user = User.objects.get(pk=data['user'])
         table = Table.objects.get(pk=data['table'])
+        
+        date = str(data['date_value'] + ' ' + data['time_value'])
 
         reservation = Reservation.objects.create(
             user = user,
             table = table,
-            date = data['date'],
+            date = date,
             notes = data['notes'],
-            cancellation_policy = data['cancellation_policy'],
+            cancellation_policy = data['policy'],
+            guests = data['guest_value'],
         )
 
         serializer = ReservationSerializer(reservation)

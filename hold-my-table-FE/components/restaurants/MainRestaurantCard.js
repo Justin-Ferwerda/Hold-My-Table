@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import Link from 'next/link';
 import StarRating from '../utility/StarRating';
 
 export default function MainRestaurantCard({ restaurant, src }) {
@@ -11,7 +12,9 @@ export default function MainRestaurantCard({ restaurant, src }) {
       <Card className="text-center restaurant-card">
         <img className="card-img-top" src={src} />
         <Card.Body className="restaurant-card-body">
-          <Card.Text>{restaurant.name}</Card.Text>
+          <Link href={`/restaurants/${restaurant.id}`} passHref>
+            <Card.Text className="restaurant-card-name">{restaurant.name}</Card.Text>
+          </Link>
           <div className="card-star-rating">
             <StarRating rating={restaurant.rating} />
           </div>
@@ -25,6 +28,7 @@ export default function MainRestaurantCard({ restaurant, src }) {
 
 MainRestaurantCard.propTypes = {
   restaurant: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     style: PropTypes.shape({
       label: PropTypes.string,
