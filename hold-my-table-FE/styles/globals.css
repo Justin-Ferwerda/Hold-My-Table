@@ -58,6 +58,63 @@ _________________________________
   font-family: 'Comic Neue', cursive;
 }
 
+/*
+____________________________
+
+home page
+____________________________
+*/
+
+.restaurant-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: '50vh';
+  padding: '30px';
+  width: 40vw;
+  margin: '0 auto';
+  border: 1px solid black;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.all-restaurants-card {
+  scroll-snap-align: start;
+  flex: 0 0 33.33%;
+}
+
+.scroll-button {
+  position: fixed;
+  right: 30px;
+  transform: translateY(-50%);
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.scroll-button-right {
+  position: fixed;
+  left: 475px;
+  transform: translateY(-50%);
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1; 
+}
+
+.scroll-icons {
+  color: black;
+  background-color: white;
+}
+
+.scroll-icons:hover {
+  background-color: white;
+}
+
 /* 
 ____________________________
 
@@ -131,12 +188,12 @@ __________________________________
 }
 
 .layout-key {
-  display: flex;
+  text-align: center;
   height: 75vh;
   width: 20vw;
-  border: 1px solid black;
   margin: 25px;
   flex-direction: column;
+  background-color: #ADD8E6;
 }
 
 .seat-key {
@@ -179,10 +236,16 @@ __________________________________
 
 .user-buttons {
   margin-top: 25px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
 .layout-instructions {
   margin: 10px;
+}
+
+.layout-btns {
+  width: 150px;
 }
 
 /* 
@@ -250,17 +313,4 @@ ____________________________________
 
 .restaurant-card-name:hover {
   cursor: pointer;
-}
-
-/*
-____________________________________
-
-restaurant card container
-____________________________________
-*/
-
-.restaurant-container {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
 }

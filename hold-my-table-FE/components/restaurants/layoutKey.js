@@ -10,12 +10,12 @@ export default function LayoutKey({
     <div className="layout-key">
       {user.id === restaurant?.adminUser?.id ? (
         <div className="user-buttons">
-          <Button variant="contained" onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
+          <Button variant="contained" className="layout-btns" onClick={handleSaveLayout}>{editMode ? 'save' : 'edit'} Layout</Button>
           <div>
-            <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} /> Table
+            <AddTableModal restaurant={restaurant} onUpdate={onUpdate} setEditMode={setEditMode} />
           </div>
           <p className="layout-instructions">
-            Click Edit Layout button to edit your table layout. Drag and drop tables anywhere you like. Hit the + button to add a table to your restaurant.
+            Click Edit Layout button to edit your table layout or edit table information. Drag and drop tables to match your restaurant layout. Click the Add Table button to create a new table.
           </p>
         </div>
       ) : (

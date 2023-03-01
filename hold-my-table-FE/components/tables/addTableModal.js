@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
 import TableForm from '../forms/TableForm';
 
 export default function AddTableModal({
@@ -17,7 +17,7 @@ export default function AddTableModal({
   return (
     <>
       <IconButton aria-label="add table" onClick={handleShow}>
-        {table.id ? <EditIcon style={{ color: 'black' }} /> : <AddIcon />}
+        {table.id ? <EditIcon /> : <Button variant="contained" className="layout-btns">Add Table</Button>}
       </IconButton>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="modalHeader" closeButton>

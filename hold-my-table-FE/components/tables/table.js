@@ -59,8 +59,8 @@ export default function Table({
       {user.id === table.restaurant.admin_user && editMode ? (
         <div className="edit-delete-table">
           <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
-          <IconButton aria-label="delete" className="delete-btn " onClick={deleteThisTable}>
-            <DeleteIcon style={{ color: 'black' }} />
+          <IconButton aria-label="delete" className="delete-btn" onClick={deleteThisTable}>
+            <DeleteIcon />
           </IconButton>
         </div>
       ) : <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />}
