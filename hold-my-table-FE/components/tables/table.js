@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import { circleStyles, rectangleStyles, squareStyles } from '../../utils/data/options/tableStyleOptions';
@@ -10,9 +10,9 @@ import TableModal from './tableModal';
 import AddTableModal from './addTableModal';
 import { deleteTable } from '../../utils/data/api/tableData';
 
-export default function Table({
+const Table = React.forwardRef(({
   table, xCoord, yCoord, saveLocation, editMode, dateProps, onUpdate, user,
-}) {
+}, ref) => {
   const [{ x, y }, api] = useSpring(() => ({ x: xCoord, y: yCoord }));
   const [show, setShow] = useState(false);
   const seats = [];
@@ -35,6 +35,13 @@ export default function Table({
     onMouseDown: !editMode ? () => {
       setShow(true);
     } : () => null,
+  }, {
+    drag: {
+      bounds: ref,
+      rubberband: true,
+      filterTaps: true,
+      preventDefault: true,
+    },
   });
 
   let styleOptions = table.reserved && user.id !== table.restaurant.admin_user ? { backgroundColor: '#FF7276' } : { backgroundColor: '#ADD8E6' };
@@ -67,7 +74,7 @@ export default function Table({
     </animated.div>
 
   );
-}
+});
 
 Table.propTypes = {
   table: PropTypes.shape({
@@ -89,4 +96,11 @@ Table.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number,
   }).isRequired,
+  ref: PropTypes.shape({
+
+    offsetHeight: PropTypes.number,
+    offsetWidth: PropTypes.number,
+  }).isRequired,
 };
+
+export default Table;

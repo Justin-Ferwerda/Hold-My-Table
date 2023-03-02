@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import moment from 'moment/moment';
 import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
@@ -18,11 +18,13 @@ export default function ReservationPortal() {
   const [dateValue, setDateValue] = useState(moment().format('YYYY-MM-DD'));
   const [timeValue, setTimeValue] = useState('17:00:00');
   const [guestValue, setGuestValue] = useState(2);
+  const parentRef = useRef(null);
 
   const getTheRestaurant = async () => {
     const res = await getSingleRestaurant(restaurantId, timeValue, dateValue);
     setRestaurant(res);
     setTables(res.tables);
+    console.warn(parentRef);
   };
 
   const saveLocation = (id, location) => {
@@ -82,9 +84,9 @@ export default function ReservationPortal() {
     <>
       <div className="layout-container">
         <LayoutKey {...layoutProps} />
-        <div className="table-container">
+        <div ref={parentRef} className="table-container">
           {
-        tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} user={user} />)
+        tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} user={user} ref={parentRef} />)
       }
         </div>
       </div>
