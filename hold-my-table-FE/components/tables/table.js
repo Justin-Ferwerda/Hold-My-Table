@@ -39,8 +39,6 @@ const Table = React.forwardRef(({
     drag: {
       bounds: ref,
       rubberband: true,
-      filterTaps: true,
-      preventDefault: true,
     },
   });
 
@@ -67,7 +65,7 @@ const Table = React.forwardRef(({
         <div className="edit-delete-table">
           <AddTableModal table={table} restaurant={table.restaurant} onUpdate={onUpdate} />
           <IconButton aria-label="delete" className="delete-btn" onClick={deleteThisTable}>
-            <DeleteIcon />
+            <DeleteIcon fontSize="medium" />
           </IconButton>
         </div>
       ) : <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />}

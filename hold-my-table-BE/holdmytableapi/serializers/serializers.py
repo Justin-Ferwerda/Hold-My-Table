@@ -34,7 +34,7 @@ class ReviewSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Review
-        fields = ('id', 'user', 'table', 'rating', 'content', 'image_url')
+        fields = ('id', 'user', 'table', 'rating', 'content', 'image')
         depth = 1
 
 class TableSerializer(ModelSerializer):
