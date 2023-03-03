@@ -1,5 +1,5 @@
 """reservation view"""
-
+from datetime import datetime
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -34,11 +34,12 @@ class ReservationView(ViewSet):
         table = Table.objects.get(pk=data['table'])
 
         date = str(data['date_value'] + ' ' + data['time_value'])
+        converted_date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
 
         reservation = Reservation.objects.create(
             user = user,
             table = table,
-            date = date,
+            date = converted_date,
             notes = data['notes'],
             cancellation_policy = data['policy'],
             guests = data['guest_value'],

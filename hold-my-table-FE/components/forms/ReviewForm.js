@@ -10,7 +10,7 @@ export default function ReviewForm({ user, table }) {
   const [rating, setRating] = useState({ rating: 0 });
   const [formData, setFormData] = useState({
     user: user.id,
-    table: 1,
+    table,
   });
   const [image, setImage] = useState();
   const router = useRouter();

@@ -1,4 +1,5 @@
 """user model"""
+from datetime import datetime
 from django.db import models
 
 class User(models.Model):
@@ -21,7 +22,14 @@ class User(models.Model):
     @property
     def reservations(self):
         """user reservations"""
-        reservations = [res for res in self.user_reservations.all()]
+        reservations = [res for res in self.user_reservations.all() if datetime.now() < res.date]
+        if len(reservations):
+            return reservations
+
+    @property
+    def past_reservations(self):
+        """past reservations"""
+        reservations = [res for res in self.user_reservations.all() if datetime.now() > res.date]
         if len(reservations):
             return reservations
 

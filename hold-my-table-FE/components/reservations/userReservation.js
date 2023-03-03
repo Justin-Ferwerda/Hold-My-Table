@@ -5,6 +5,7 @@ import { Card, Button } from 'react-bootstrap';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PeopleIcon from '@mui/icons-material/People';
 import { deleteReservation } from '../../utils/data/api/reservationData';
+import ReviewModal from '../reviews/ReviewModal';
 
 export default function UserReservation({ reservation, user, onUpdate }) {
   const formattedDate = moment(reservation.date).format('dddd, MMM D, YYYY');
@@ -24,7 +25,7 @@ export default function UserReservation({ reservation, user, onUpdate }) {
           <Card.Text><CalendarTodayIcon /> {formattedDate}  {formattedTime}</Card.Text>
           <Card.Text><PeopleIcon /> {reservation.guests} guests</Card.Text>
           <a href={reservation.table.restaurant.website_url}>{reservation.table.restaurant.website_url}</a>
-          {user.id === reservation.user.id ? <Button variant="outline-secondary" onClick={deleteThisReservation}>Cancel Reservation</Button> : <div /> }
+          {user.id === reservation.user.id && !reservation.is_past ? <Button variant="outline-secondary" onClick={deleteThisReservation}>Cancel Reservation</Button> : <ReviewModal user={user} table={reservation.table.id} />}
         </Card.Body>
       </Card>
     </div>
@@ -37,6 +38,7 @@ UserReservation.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.number,
     }),
+    is_past: PropTypes.bool,
     guests: PropTypes.number,
     date: PropTypes.string,
     id: PropTypes.number,
@@ -45,6 +47,7 @@ UserReservation.propTypes = {
         name: PropTypes.string,
         website_url: PropTypes.string,
       }),
+      id: PropTypes.number,
     }),
   }).isRequired,
   user: PropTypes.shape({
