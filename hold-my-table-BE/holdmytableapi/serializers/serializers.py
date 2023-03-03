@@ -25,7 +25,7 @@ class ReservationSerializer(ModelSerializer):
     class Meta:
         """fields"""
         model = Reservation
-        fields = ('id', 'user', 'table', 'date', 'notes', 'guests')
+        fields = ('id', 'user', 'table', 'date', 'notes', 'guests', 'is_past')
         depth = 2
 
 class ReviewSerializer(ModelSerializer):
@@ -78,9 +78,10 @@ class UserSerializer(ModelSerializer):
     styles = UserStyleSerializer(many=True)
     reservations = ReservationSerializer(many=True)
     admin_restaurant = RestaurantSerializer()
+    past_reservations = ReservationSerializer(many=True)
 
     class Meta:
         """fields"""
         model = User
-        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles', 'reservations', 'admin', 'admin_restaurant')
+        fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'phone', 'profile_image_url', 'styles', 'reservations', 'admin', 'admin_restaurant', 'past_reservations')
         depth = 1

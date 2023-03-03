@@ -17,6 +17,6 @@ def check_if_reserved(tables, date, time):
             res_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
             diff_1 = request_date - res_date
 
-            table.reserved = diff_1 < timedelta(minutes=90)
+            table.reserved = timedelta(minutes=-90) < diff_1 < timedelta(minutes=90)
 
     return tables
