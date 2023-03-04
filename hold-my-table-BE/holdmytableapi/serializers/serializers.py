@@ -64,12 +64,13 @@ class RestaurantSerializer(ModelSerializer):
     # tables = TableSerializer(many=True)
     images = RestaurantImageSerializer(many=True)
     reservations = ReservationSerializer(many=True)
+    past_reservations = ReservationSerializer(many=True)
 
     class Meta:
         """fields"""
         model = Restaurant
         fields = ('id', 'name', 'admin_user', 'email', 'phone_number', 'address', 'website_url', 'instagram', 'banner_pic',
-        'rating', 'cancellation_policy', 'style', 'tables', 'images', 'price_tier', 'bio', 'reservations')
+        'rating', 'cancellation_policy', 'style', 'tables', 'images', 'price_tier', 'bio', 'reservations', 'past_reservations')
         depth = 1
 
 class UserSerializer(ModelSerializer):

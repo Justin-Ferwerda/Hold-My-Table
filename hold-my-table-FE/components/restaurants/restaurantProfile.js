@@ -18,7 +18,7 @@ export default function RestaurantProfile({ restaurant }) {
           <Card.Text>instagram: {restaurant.instagram}</Card.Text>
           <Card.Text>cancellation policy: {restaurant.cancellation_policy}</Card.Text>
           <Card.Text>style: {restaurant.style?.label}</Card.Text>
-          <Card.Text>price tier: {restaurant.priceTier}</Card.Text>
+          <Card.Text>price tier: {restaurant.price_tier}</Card.Text>
           <Card.Text>bio: {restaurant.bio}</Card.Text>
           <Link href={`/restaurants/edit/${restaurant.id}`} passHref>
             <Button>Edit Profile</Button>

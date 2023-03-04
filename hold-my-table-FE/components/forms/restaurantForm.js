@@ -25,9 +25,9 @@ export default function RestaurantForm({ restaurant }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (restaurant.id) {
-      updateRestaurant(formData).then(() => router.push(`/restaurant/account/${restaurant.id}`));
+      updateRestaurant(formData).then(() => router.push(`/restaurants/account/${restaurant.adminUser.id}`));
     } else {
-      createRestaurant(formData).then(() => router.push(`/restaurant/account/${restaurant.id}`));
+      createRestaurant(formData).then(() => router.push(`/restaurants/account/${restaurant.adminUser.id}`));
     }
   };
 
