@@ -111,6 +111,9 @@ export default function RestaurantForm({ restaurant }) {
 RestaurantForm.propTypes = {
   restaurant: PropTypes.shape({
     id: PropTypes.number,
+    adminUser: PropTypes.shape({
+      id: PropTypes.number,
+    }),
   }),
 };
 
