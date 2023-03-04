@@ -42,6 +42,11 @@ ________________________________
   height: 2.5rem;
 }
 
+.footer-link:hover {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
 /* 
 ________________________________
 
