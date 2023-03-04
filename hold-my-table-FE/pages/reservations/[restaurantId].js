@@ -45,6 +45,9 @@ export default function ReservationPortal() {
 
   useEffect(() => {
     getTheRestaurant();
+    tables.forEach((table) => {
+      setLocations({ ...locations, [table.id]: { x: table.xCoord, y: table.yCoord } });
+    });
   }, [dateValue, timeValue]);
 
   const dateHandleChange = (date) => {
