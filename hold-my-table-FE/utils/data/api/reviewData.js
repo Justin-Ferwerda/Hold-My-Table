@@ -17,10 +17,10 @@ const createReview = (payload) => new Promise((resolve, reject) => {
 const updateReview = (data) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/reviews/${data.id}`, {
     method: 'PUT',
-    body: data,
+    body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'multipart/form-data',
-      Accept: 'multipart/form-data',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   })
     .then((response) => response.json())
