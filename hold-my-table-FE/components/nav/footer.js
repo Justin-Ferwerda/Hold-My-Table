@@ -34,7 +34,7 @@ export default function StickyFooter() {
         <Container maxWidth="sm">
           <Copyright />
           <Typography variant="body1">
-            Want your restaurant on Hold My Table? Start Here.
+            Want your restaurant on Hold My Table? Start <Link className="footer-link" href="/restaurants/new">Here.</Link>
           </Typography>
         </Container>
       </Box>
