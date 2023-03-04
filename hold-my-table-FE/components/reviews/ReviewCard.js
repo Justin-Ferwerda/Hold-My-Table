@@ -63,7 +63,7 @@ export default function ReviewCard({ review, onUpdate }) {
   return (
     <div className="review-card">
       <Card className="text-center" style={{ width: '18rem' }}>
-        <img src={review.image_url} />
+        {/* <img src={review.image} /> */}
         <Card.Body className="review-card-body">
           <Avatar src={review.user.profile_image_url} />
           <Card.Text>{review.user.first_name} {review.user.last_name}</Card.Text>

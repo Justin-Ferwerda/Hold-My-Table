@@ -48,18 +48,17 @@ function RegisterForm({ user, updateUser }) {
     getStyles().then(setStyles);
   };
 
+  const userStyles = user?.styles?.map((style) => (
+    {
+      value: style.style.id,
+      label: style.style.label,
+    }
+  ));
+
   useEffect(() => {
     getTheStyles();
     if (user?.id) {
-      setSelected(() => {
-        // eslint-disable-next-line react/prop-types
-        user?.styles?.map((style) => (
-          {
-            value: style.style.id,
-            label: style.style.label,
-          }
-        ));
-      });
+      setSelected(userStyles);
       setFormData(user);
     }
   }, [user]);
@@ -89,6 +88,7 @@ function RegisterForm({ user, updateUser }) {
           isMulti
           name="styles"
           options={styleOptions}
+          defaultValue={selected}
           value={selected}
           className="basic-multi-select"
           classNamePrefix="select"
@@ -103,10 +103,11 @@ function RegisterForm({ user, updateUser }) {
 
 RegisterForm.propTypes = {
   user: PropTypes.shape({
-    uid: PropTypes.string.isRequired,
+    uid: PropTypes.string,
     fbUser: PropTypes.shape({
       photoURL: PropTypes.string,
     }),
+    styles: PropTypes.arrayOf(PropTypes.shape([])),
     id: PropTypes.number,
     profileImageUrl: PropTypes.string,
   }),
