@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PeopleIcon from '@mui/icons-material/People';
+import { Button } from '@mui/material';
 import { deleteReservation } from '../../utils/data/api/reservationData';
 import ReviewModal from '../reviews/ReviewModal';
 
@@ -25,7 +26,7 @@ export default function UserReservation({ reservation, user, onUpdate }) {
           <Card.Text><CalendarTodayIcon /> {formattedDate}  {formattedTime}</Card.Text>
           <Card.Text><PeopleIcon /> {reservation.guests} guests</Card.Text>
           <a href={reservation.table.restaurant.website_url}>{reservation.table.restaurant.website_url}</a>
-          {user.id === reservation.user.id && !reservation.is_past ? <Button variant="outline-secondary" onClick={deleteThisReservation}>Cancel Reservation</Button> : <ReviewModal user={user} table={reservation.table.id} />}
+          {user.id === reservation.user.id && !reservation.is_past ? <Button className="reservation-delete-btn" variant="contained" color="error" onClick={deleteThisReservation}>Cancel Reservation</Button> : <ReviewModal user={user} table={reservation.table.id} />}
         </Card.Body>
       </Card>
     </div>

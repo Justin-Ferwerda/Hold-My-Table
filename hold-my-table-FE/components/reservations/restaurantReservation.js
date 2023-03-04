@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PeopleIcon from '@mui/icons-material/People';
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
@@ -27,7 +28,7 @@ export default function RestaurantReservation({ reservation, user, onUpdate }) {
           <Card.Text><TableRestaurantIcon />{reservation.table.number}</Card.Text>
           <Card.Text>Contact {reservation.user.first_name} {reservation.user.last_name}</Card.Text>
           <Card.Text>Notes: {reservation.notes}</Card.Text>
-          {user.id === reservation.table.restaurant.admin_user ? <Button variant="outline-secondary" onClick={deleteThisReservation}>Cancel Reservation</Button> : <div /> }
+          {user.id === reservation.table.restaurant.admin_user && reservation.is_past ? <div /> : <Button variant="contained" color="error" onClick={deleteThisReservation}>Cancel Reservation</Button>}
         </Card.Body>
       </Card>
     </div>
@@ -44,6 +45,7 @@ RestaurantReservation.propTypes = {
       last_name: PropTypes.string,
     }),
     guests: PropTypes.number,
+    is_past: PropTypes.bool,
     date: PropTypes.string,
     id: PropTypes.number,
     table: PropTypes.shape({

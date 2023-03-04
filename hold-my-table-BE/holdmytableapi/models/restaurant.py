@@ -47,6 +47,5 @@ class Restaurant(models.Model):
     @property
     def past_reservations(self):
         """past reservations"""
-        reservations = [res for res in self.reservations if datetime.now() > res.date]
-        if len(reservations):
-            return reservations
+        reservations = [reservation for table in self.tables.all() for reservation in table.reservations if datetime.now() > reservation.date]
+        return reservations

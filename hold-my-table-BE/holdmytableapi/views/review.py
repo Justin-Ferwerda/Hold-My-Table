@@ -17,20 +17,20 @@ class ReviewView(ViewSet):
         data = camel_case_to_snake_case(request.data)
         table = Table.objects.get(pk=data['table'])
         user = User.objects.get(pk=data['user'])
-        
+
         review = Review()
-        
+
         format, imgstr = data["image"].split(';base64,')
         ext = format.split('/')[-1]
         upload = ContentFile(base64.b64decode(imgstr), name=f'{table.id}-{uuid.uuid4()}.{ext}')
-        
+
         review.image = upload
         review.table = table
         review.user = user
         review.content = data['content']
         review.rating = data['rating']
-        
-        review.save()        
+
+        review.save()
 
         serializer = ReviewSerializer(review)
         return Response(serializer.data)

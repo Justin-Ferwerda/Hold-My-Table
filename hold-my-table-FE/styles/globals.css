@@ -314,3 +314,72 @@ ____________________________________
 .restaurant-card-name:hover {
   cursor: pointer;
 }
+
+/*
+___________________________________
+
+user profile page
+___________________________________
+*/
+
+.user-reservation-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-past-reservations {
+  height: 50vh;
+  width: 40vw;
+  overflow-y: scroll;
+  white-space: nowrap;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.user-reservation-container {
+  height: 50vh;
+  width: 40vw;
+  overflow-y: scroll;
+  white-space: nowrap;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.reservationCard {
+  padding: 6px;
+  position: relative;
+}
+
+/*
+___________________________________
+
+restaurant account page
+___________________________________
+*/
+
+.res-reservation-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.res-past-reservations {
+  height: 50vh;
+  width: 40vw;
+  overflow-y: scroll;
+  white-space: nowrap;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.res-upcoming-reservations {
+  height: 50vh;
+  width: 40vw;
+  overflow-y: scroll;
+  white-space: nowrap;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
