@@ -111,6 +111,9 @@ export default function MenuAppBar() {
               >
                 <MenuItem className="signOut-btn" onClick={signMeOut}>Sign Out</MenuItem>
                 <MenuItem className="my-account-btn" onClick={() => router.push(`/user/${user.id}`)}>My Account</MenuItem>
+                {
+                  user.adminRestaurant ? <MenuItem className="restaurant-account-btn" onClick={() => router.push(`/restaurants/account/${user.id}`)}>Restaurant Account</MenuItem> : <div />
+                }
               </Menu>
             </div>
             )}

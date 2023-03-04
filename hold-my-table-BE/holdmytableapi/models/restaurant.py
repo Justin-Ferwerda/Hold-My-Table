@@ -1,4 +1,5 @@
 """restaurant model"""
+from datetime import datetime
 from django.db import models
 from .user import User
 from .style import Style
@@ -40,5 +41,12 @@ class Restaurant(models.Model):
     @property
     def reservations(self):
         """gets reservations from all table in restaurant"""
-        reservations = [reservation for table in self.tables.all() for reservation in table.reservations]
+        reservations = [reservation for table in self.tables.all() for reservation in table.reservations if datetime.now() < reservation.date]
         return reservations
+
+    @property
+    def past_reservations(self):
+        """past reservations"""
+        reservations = [res for res in self.reservations if datetime.now() > res.date]
+        if len(reservations):
+            return reservations
