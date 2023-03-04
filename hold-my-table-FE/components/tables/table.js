@@ -39,6 +39,7 @@ const Table = React.forwardRef(({
     drag: {
       bounds: ref,
       rubberband: true,
+      from: () => [x.get(), y.get()],
     },
   });
 
