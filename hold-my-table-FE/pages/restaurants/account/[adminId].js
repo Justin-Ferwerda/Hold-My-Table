@@ -12,23 +12,24 @@ export default function ProfileContainer() {
   }, [user]);
 
   return (
-    <>
-      <div className="restaurant-account-res-container">
-        <h3>Upcoming reservations</h3>
-        {
+    <div className="res-account-page">
+      <div className="res-reservation-container">
+        <div className="res-upcoming-reservations">
+          <h3>Upcoming reservations</h3>
+          {
         restaurant?.reservations?.map((res) => <RestaurantReservation reservation={res} user={user} onUpdate={() => setRestaurant(user.adminRestaurant)} />)
       }
-      </div>
-      <div className="res-past-reservations">
-        <h3>Past Reservations</h3>
-        {
-        restaurant.pastReservations?.map((res) => <RestaurantReservation reservation={res} user={user} onUpdate={() => setRestaurant(user.adminRestaurant)} />)
+        </div>
+        <div className="res-past-reservations">
+          <h3>Past Reservations</h3>
+          {
+        restaurant?.past_reservations?.map((res) => <RestaurantReservation reservation={res} user={user} onUpdate={() => setRestaurant(user.adminRestaurant)} />)
       }
+        </div>
       </div>
       <div className="restaurant-profile">
         <RestaurantProfile restaurant={restaurant} />
       </div>
-    </>
-
+    </div>
   );
 }

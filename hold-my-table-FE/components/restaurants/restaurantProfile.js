@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Link from 'next/link';
+import { Button } from '@mui/material';
 
 export default function RestaurantProfile({ restaurant }) {
   return (
@@ -21,7 +22,7 @@ export default function RestaurantProfile({ restaurant }) {
           <Card.Text>price tier: {restaurant.price_tier}</Card.Text>
           <Card.Text>bio: {restaurant.bio}</Card.Text>
           <Link href={`/restaurants/edit/${restaurant.id}`} passHref>
-            <Button>Edit Profile</Button>
+            <Button variant="contained">Edit Profile</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -40,7 +41,7 @@ RestaurantProfile.propTypes = {
     website_url: PropTypes.string,
     instagram: PropTypes.string,
     cancellation_policy: PropTypes.string,
-    priceTier: PropTypes.string,
+    price_tier: PropTypes.string,
     bio: PropTypes.string,
     id: PropTypes.number,
     style: PropTypes.shape({

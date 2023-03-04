@@ -23,23 +23,24 @@ export default function ProfilePage() {
   }, [user]);
 
   return (
-    <>
-      <h2>My Reservations</h2>
-      <div className="user-reservation-container">
-        <h3>Upcoming Reservations</h3>
-        {reservations?.map((res) => (
-          <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
-        ))}
-      </div>
-      <div className="user-past-reservations">
-        <h3>Past Reservations</h3>
-        {pastReservations?.map((res) => (
-          <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
-        ))}
+    <div className="user-page">
+      <div className="user-reservation-page">
+        <div className="user-reservation-container">
+          <h3>Upcoming Reservations</h3>
+          {reservations?.map((res) => (
+            <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
+          ))}
+        </div>
+        <div className="user-past-reservations">
+          <h3>Past Reservations</h3>
+          {pastReservations?.map((res) => (
+            <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
+          ))}
+        </div>
       </div>
       <div className="user-profile">
         <UserProfile user={user} />
       </div>
-    </>
+    </div>
   );
 }

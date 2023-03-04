@@ -11,8 +11,8 @@ export default function TableForm({
   const [reservable, setReservable] = useState(true);
   const [formData, setFormData] = useState({
     restaurantId: restaurant.id,
-    xCoord: 0,
-    yCoord: 0,
+    xCoord: 100,
+    yCoord: -100,
     reservable,
   });
 
