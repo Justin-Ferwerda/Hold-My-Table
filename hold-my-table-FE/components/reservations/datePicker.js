@@ -36,11 +36,12 @@ export default function ReservationPicker({
         <InputLabel id="demo-simple-select-label">Time</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          id="time-value-dropdown"
           value={timeValue}
           label="Time"
           onChange={timeHandleChange}
         >
+          <MenuItem key="defult" value="">Select A Time</MenuItem>
           {timeOptions.map((option) => (
             <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
           ))}

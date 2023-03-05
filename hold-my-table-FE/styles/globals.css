@@ -181,6 +181,10 @@ __________________________________
   margin-top: 30px;
 }
 
+#time-value-dropdown {
+  width: 150px;
+}
+
 .layout-container {
   display: flex;
 }

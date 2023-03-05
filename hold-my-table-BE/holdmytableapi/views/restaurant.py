@@ -22,16 +22,7 @@ class RestaurantView(ViewSet):
 
         if date and time is not None:
 
-            year, month, day = date.split('-')
-            hour, minutes, seconds = time.split(':')
-
-            request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
-
-            if datetime.now() > request_date:
-                return Response({'message': 'Please choose a date in the future!'}, status.HTTP_403_FORBIDDEN)
-
-            else:
-                res_tables = check_if_reserved(res_tables, request_date)
+            res_tables = check_if_reserved(res_tables, date, time)
 
         data = {}
         table_serializer = TableSerializer(res_tables, many=True)
@@ -55,7 +46,7 @@ class RestaurantView(ViewSet):
 
     def create(self, request):
         """handles POST request for restaurants"""
-
+        print(request.data)
         data = camel_case_to_snake_case(request.data)
         admin_user = User.objects.get(pk=data['admin_user'])
         style = Style.objects.get(pk=data['style'])
@@ -71,6 +62,7 @@ class RestaurantView(ViewSet):
             instagram = data['instagram'],
             banner_pic = data['banner_pic'],
             cancellation_policy = data['cancellation_policy'],
+            price_tier = data['price_tier'],
             style = style,
         )
 

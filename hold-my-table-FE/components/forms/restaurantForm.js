@@ -5,14 +5,23 @@ import { Form, FloatingLabel } from 'react-bootstrap';
 import { Button } from '@mui/material';
 import { createRestaurant, updateRestaurant } from '../../utils/data/api/restaurantData';
 import getStyles from '../../utils/data/api/styleData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function RestaurantForm({ restaurant }) {
-  const [formData, setFormData] = useState({});
+  const { user, updateUser } = useAuth();
+  const [formData, setFormData] = useState({
+    adminUser: user.id,
+  });
   const [styles, setStyles] = useState([]);
   const router = useRouter();
+  const [resId, setResId] = useState();
 
   const getTheStyles = () => {
     getStyles().then(setStyles);
+  };
+
+  const handleLayoutBtn = () => {
+    updateUser(user.uid).then(() => router.push(`/reservations/${resId}`));
   };
 
   const handleChange = (e) => {
@@ -21,6 +30,7 @@ export default function RestaurantForm({ restaurant }) {
       ...prevState,
       [name]: value,
     }));
+    console.warn(formData);
   };
 
   const handleSubmit = (e) => {
@@ -28,7 +38,12 @@ export default function RestaurantForm({ restaurant }) {
     if (restaurant.id) {
       updateRestaurant(formData).then(() => router.push(`/restaurants/account/${restaurant.adminUser.id}`));
     } else {
-      createRestaurant(formData).then(window.confirm('account created!'));
+      createRestaurant(formData).then((res) => {
+        if (res) {
+          setResId(res.id);
+          window.confirm('account created! Click Layout Design button to finish setup!');
+        }
+      });
     }
   };
 
@@ -74,7 +89,7 @@ export default function RestaurantForm({ restaurant }) {
 
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Cancellation Policy</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={handleChange} name="cancellationPolicy" value={formData.cancellationPolicy} />
+            <Form.Control as="textarea" rows={3} onChange={handleChange} name="cancellationPolicy" value={formData.cancellationPolicy} required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -91,8 +106,8 @@ export default function RestaurantForm({ restaurant }) {
               ))}
             </Form.Select>
           </FloatingLabel>
-          <FloatingLabel controlId="floatingSelect" label="style">
-            <Form.Select aria-label="style" name="price_tier" onChange={handleChange} className="mb-3" value={formData?.priceTier} required>
+          <FloatingLabel controlId="floatingSelect" label="Price Tier">
+            <Form.Select aria-label="Price Tier" name="priceTier" onChange={handleChange} className="mb-3" value={formData?.priceTier} required>
               <option value="">Select a Price Tier</option>
               <option value="$">$</option>
               <option value="$$">$$</option>
@@ -108,7 +123,7 @@ export default function RestaurantForm({ restaurant }) {
           {!restaurant.id ? (
             <>
               <h4>Hold My Table offers a custom layout designer in order for customers to be able to reserve any table in your restaurant. On the next page you will recreate your layout and be asked to put in some additional info for each table.</h4>
-              <Button variant="contained" className="add-restaurant-btn" type="submit">Go To Layout Designer</Button>
+              <Button variant="contained" className="layout-design-btn" onClick={handleLayoutBtn}>Go To Layout Designer</Button>
             </>
           ) : (
             <div />

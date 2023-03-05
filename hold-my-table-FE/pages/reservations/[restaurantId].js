@@ -6,7 +6,6 @@ import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurant
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import LayoutKey from '../../components/restaurants/layoutKey';
-import closestTime from '../../utils/helpers/closestTime';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -17,7 +16,7 @@ export default function ReservationPortal() {
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
   const [dateValue, setDateValue] = useState(moment().format('YYYY-MM-DD'));
-  const [timeValue, setTimeValue] = useState(closestTime());
+  const [timeValue, setTimeValue] = useState('23:45:00');
   const [guestValue, setGuestValue] = useState(2);
   const parentRef = useRef(null);
 
