@@ -57,7 +57,7 @@ const createRestaurant = (payload) => new Promise((resolve, reject) => {
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/js,on',
+      Accept: 'application/json',
     },
   })
     .then((response) => response.json())
