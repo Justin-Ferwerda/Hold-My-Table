@@ -6,6 +6,7 @@ import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurant
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
 import LayoutKey from '../../components/restaurants/layoutKey';
+import closestTime from '../../utils/helpers/closestTime';
 
 export default function ReservationPortal() {
   const router = useRouter();
@@ -16,15 +17,21 @@ export default function ReservationPortal() {
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
   const [dateValue, setDateValue] = useState(moment().format('YYYY-MM-DD'));
-  const [timeValue, setTimeValue] = useState('17:00:00');
+  const [timeValue, setTimeValue] = useState(closestTime());
   const [guestValue, setGuestValue] = useState(2);
   const parentRef = useRef(null);
 
   const getTheRestaurant = async () => {
     const res = await getSingleRestaurant(restaurantId, timeValue, dateValue);
-    setRestaurant(res);
-    setTables(res.tables);
-    console.warn(parentRef);
+    if (res.message) {
+      alert(`${res.message}`);
+    } else {
+      setRestaurant(res);
+      setTables(res.tables);
+      tables.forEach((table) => {
+        setLocations({ ...locations, [table.id]: { x: table.xCoord, y: table.yCoord } });
+      });
+    }
   };
 
   const saveLocation = (id, location) => {
@@ -45,9 +52,6 @@ export default function ReservationPortal() {
 
   useEffect(() => {
     getTheRestaurant();
-    tables.forEach((table) => {
-      setLocations({ ...locations, [table.id]: { x: table.xCoord, y: table.yCoord } });
-    });
   }, [dateValue, timeValue]);
 
   const dateHandleChange = (date) => {

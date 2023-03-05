@@ -21,7 +21,7 @@ export default function RestaurantReservation({ reservation, user, onUpdate }) {
     <div className="reservationCard">
       <Card>
         <Card.Body>
-          <h3>{reservation.table.restaurant.name}</h3>
+          <h3>{reservation.user.first_name} {reservation.user.last_name}</h3>
           <Card.Text><CalendarTodayIcon /> {formattedDate}  {formattedTime}</Card.Text>
           <Card.Text><PeopleIcon /> {reservation.guests} guests {'    '}<TableRestaurantIcon />{reservation.table.number}</Card.Text>
           <Button onClick={(e) => {
