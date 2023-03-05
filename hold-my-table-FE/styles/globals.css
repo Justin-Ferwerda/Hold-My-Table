@@ -355,7 +355,10 @@ ___________________________________
 .reservationCard {
   padding: 6px;
   position: relative;
+  background-color: #ADD8E6;
 }
+
+
 
 /*
 ___________________________________
@@ -387,4 +390,28 @@ ___________________________________
   margin: 20px;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.restaurantProfileCard {
+  margin-bottom: 20px;
+}
+
+.res-res-w-header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.res-past-res-w-header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.user-res-w-header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.user-past-res-w-header {
+  text-align: center;
+  margin-top: 20px;
 }

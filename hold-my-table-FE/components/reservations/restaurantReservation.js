@@ -10,7 +10,7 @@ import { deleteReservation } from '../../utils/data/api/reservationData';
 
 export default function RestaurantReservation({ reservation, user, onUpdate }) {
   const formattedDate = moment(reservation.date).format('dddd, MMM D, YYYY');
-  const formattedTime = moment(reservation.date).format('hh:mm a');
+  const formattedTime = moment(reservation.date).format('hh:mma');
   const deleteThisReservation = () => {
     if (window.confirm('Are you sure you want to cancel this reservation?')) {
       deleteReservation(reservation.id).then(() => onUpdate());
@@ -18,16 +18,19 @@ export default function RestaurantReservation({ reservation, user, onUpdate }) {
   };
 
   return (
-
     <div className="reservationCard">
       <Card>
         <Card.Body>
           <h3>{reservation.table.restaurant.name}</h3>
           <Card.Text><CalendarTodayIcon /> {formattedDate}  {formattedTime}</Card.Text>
-          <Card.Text><PeopleIcon /> {reservation.guests} guests</Card.Text>
-          <Card.Text><TableRestaurantIcon />{reservation.table.number}</Card.Text>
-          <Card.Text>Contact {reservation.user.first_name} {reservation.user.last_name}</Card.Text>
-          <Card.Text>Notes: {reservation.notes}</Card.Text>
+          <Card.Text><PeopleIcon /> {reservation.guests} guests {'    '}<TableRestaurantIcon />{reservation.table.number}</Card.Text>
+          <Button onClick={(e) => {
+            window.location.href = `mailto:${reservation.user.email}?subject=Regarding Your Reservation ${formattedDate} ${formattedTime} at ${reservation.table.restaurant.name}`;
+            e.preventDefault();
+          }}
+          >Contact {reservation.user.first_name} {reservation.user.last_name}
+          </Button>
+          <Card.Text>Notes: <strong>{reservation.notes}</strong></Card.Text>
           {user.id === reservation.table.restaurant.admin_user && reservation.is_past ? <div /> : <Button variant="contained" color="error" onClick={deleteThisReservation}>Cancel Reservation</Button>}
         </Card.Body>
       </Card>
@@ -43,6 +46,7 @@ RestaurantReservation.propTypes = {
       id: PropTypes.number,
       first_name: PropTypes.string,
       last_name: PropTypes.string,
+      email: PropTypes.string,
     }),
     guests: PropTypes.number,
     is_past: PropTypes.bool,

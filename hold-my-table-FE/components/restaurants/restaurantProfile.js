@@ -10,17 +10,17 @@ export default function RestaurantProfile({ restaurant }) {
     <div className="restaurantProfileCard">
       <Card>
         <Card.Body>
-          <Card.Text>admin email: {restaurant.admin_user?.email}</Card.Text>
-          <Card.Text>name: {restaurant.name}</Card.Text>
-          <Card.Text>email: {restaurant.email} </Card.Text>
-          <Card.Text>phone: {restaurant.phone_number}</Card.Text>
-          <Card.Text>address: {restaurant.address}</Card.Text>
-          <Card.Text>website: {restaurant.website_url}</Card.Text>
-          <Card.Text>instagram: {restaurant.instagram}</Card.Text>
-          <Card.Text>cancellation policy: {restaurant.cancellation_policy}</Card.Text>
-          <Card.Text>style: {restaurant.style?.label}</Card.Text>
-          <Card.Text>price tier: {restaurant.price_tier}</Card.Text>
-          <Card.Text>bio: {restaurant.bio}</Card.Text>
+          <Card.Text><strong>Admin Email:  </strong>{restaurant.admin_user?.email}</Card.Text>
+          <Card.Text><strong>Name:  </strong>{restaurant.name}</Card.Text>
+          <Card.Text><strong>Email:  </strong>{restaurant.email} </Card.Text>
+          <Card.Text><strong>Phone:  </strong>Phone:  {restaurant.phone_number}</Card.Text>
+          <Card.Text><strong>Address:  </strong>{restaurant.address}</Card.Text>
+          <Card.Text><strong>Website:  </strong>{restaurant.website_url}</Card.Text>
+          <Card.Text><strong>instagram:  </strong>{restaurant.instagram}</Card.Text>
+          <Card.Text><strong>Cancellation Policy:  </strong>{restaurant.cancellation_policy}</Card.Text>
+          <Card.Text><strong>Cuisine:  </strong>{restaurant.style?.label}</Card.Text>
+          <Card.Text><strong>Price Tier:  </strong>{restaurant.price_tier}</Card.Text>
+          <Card.Text><strong>Bio:  </strong>{restaurant.bio}</Card.Text>
           <Link href={`/restaurants/edit/${restaurant.id}`} passHref>
             <Button variant="contained">Edit Profile</Button>
           </Link>
