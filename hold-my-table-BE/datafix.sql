@@ -11,7 +11,7 @@ SET user_id = 2
 WHERE id = 1
 
 DELETE FROM holdmytableapi_review
-WHERE table_id = 1
+WHERE id = 2
 
 DELETE FROM holdmytableapi_reservation
 WHERE id = 28

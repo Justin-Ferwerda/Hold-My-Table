@@ -1,12 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
+import FeaturedRestaurant from '../components/restaurants/featuredRestaurant';
 import MainRestaurantCard from '../components/restaurants/MainRestaurantCard';
 import { useRestaurant } from '../utils/context/restaurantContext';
 
 function Home() {
   const { restaurants } = useRestaurant();
+  const [featuredRestaurant, setFeaturedRestaurant] = useState();
+
+  useEffect(() => {
+    setFeaturedRestaurant(restaurants[[Math.floor(Math.random() * restaurants.length)]]);
+  }, []);
 
   return (
     <div className="home-page">
+      <div className="welcome-text">
+        <h1>Welcome to Hold My Table!</h1>
+      </div>
+      <div className="featured-restaurant">
+        <FeaturedRestaurant restaurant={featuredRestaurant} />
+      </div>
+      <h4>Restaurants</h4>
       <div
         className="restaurant-container"
       >

@@ -22,7 +22,16 @@ class RestaurantView(ViewSet):
 
         if date and time is not None:
 
-            res_tables = check_if_reserved(res_tables, date, time)
+            year, month, day = date.split('-')
+            hour, minutes, seconds = time.split(':')
+
+            request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
+
+            if datetime.now() > request_date:
+                return Response({'message': 'Please Pick a a Date in the Future!'}, status.HTTP_403_FORBIDDEN)
+
+            else:
+                res_tables = check_if_reserved(res_tables, request_date)
 
         data = {}
         table_serializer = TableSerializer(res_tables, many=True)
