@@ -37,7 +37,6 @@ export default function ReviewCard({ review, onUpdate }) {
       const payload = {
         ...formData, id: review.id,
       };
-      console.warn(payload);
       updateReview(payload).then(() => onUpdate());
       setReadOnly(true);
     }
@@ -63,7 +62,7 @@ export default function ReviewCard({ review, onUpdate }) {
   return (
     <div className="review-card">
       <Card className="text-center" style={{ width: '18rem' }}>
-        {/* <img src={review.image} /> */}
+        <img src={`http://127.0.0.1:8000${review.image}`} />
         <Card.Body className="review-card-body">
           <Avatar src={review.user.profile_image_url} />
           <Card.Text>{review.user.first_name} {review.user.last_name}</Card.Text>
@@ -71,12 +70,13 @@ export default function ReviewCard({ review, onUpdate }) {
           <Form.Control
             className="review-content"
             readOnly={readonly}
-            type="text"
+            type="textarea"
             name="content"
             value={formData.content}
             placeholder="content"
             onChange={handleContent}
             onKeyDown={handleKeyDown}
+            rows={3}
 
           />
         </Card.Body>
@@ -101,7 +101,7 @@ export default function ReviewCard({ review, onUpdate }) {
 ReviewCard.propTypes = {
   review: PropTypes.shape({
     id: PropTypes.number,
-    image_url: PropTypes.string,
+    image: PropTypes.string,
     rating: PropTypes.number,
     content: PropTypes.string,
     user: PropTypes.shape({

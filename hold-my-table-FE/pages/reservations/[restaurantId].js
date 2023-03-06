@@ -16,7 +16,7 @@ export default function ReservationPortal() {
   const [editMode, setEditMode] = useState(false);
   const [locations, setLocations] = useState({});
   const [dateValue, setDateValue] = useState(moment().format('YYYY-MM-DD'));
-  const [timeValue, setTimeValue] = useState('23:45:00');
+  const [timeValue, setTimeValue] = useState();
   const [guestValue, setGuestValue] = useState(2);
   const parentRef = useRef(null);
 

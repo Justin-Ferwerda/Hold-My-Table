@@ -64,7 +64,7 @@ export default function MenuAppBar() {
                 aria-label="menu"
                 sx={{ mr: 5 }}
               >
-                <Image src="/images/navlogo.png" style={{ height: 120, width: 120 }} />
+                <Image src="/images/navlogo.png" style={{ height: 50, width: 50 }} />
               </IconButton>
             </Link>
             <FormControl style={{ width: 250 }}>
@@ -110,9 +110,25 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem className="signOut-btn" onClick={signMeOut}>Sign Out</MenuItem>
-                <MenuItem className="my-account-btn" onClick={() => router.push(`/user/${user.id}`)}>My Account</MenuItem>
+                <MenuItem
+                  className="my-account-btn"
+                  onClick={() => {
+                    setAnchorEl(null);
+                    router.push(`/user/${user.id}`);
+                  }}
+                >My Account
+                </MenuItem>
                 {
-                  user.adminRestaurant ? <MenuItem className="restaurant-account-btn" onClick={() => router.push(`/restaurants/account/${user.id}`)}>Restaurant Account</MenuItem> : <div />
+                  user.adminRestaurant ? (
+                    <MenuItem
+                      className="restaurant-account-btn"
+                      onClick={() => {
+                        setAnchorEl(null);
+                        router.push(`/restaurants/account/${user.id}`);
+                      }}
+                    >Restaurant Account
+                    </MenuItem>
+                  ) : <div />
                 }
               </Menu>
             </div>
