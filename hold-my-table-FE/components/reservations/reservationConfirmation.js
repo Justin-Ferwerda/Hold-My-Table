@@ -45,7 +45,7 @@ export default function Confirmation({
         <Card.Header>Complete Your Reservation</Card.Header>
         <Card.Body>
           <Card.Title>{restaurant.name}</Card.Title>
-          <Card.Text>{user.fbUser.displayName}</Card.Text>
+          <Card.Text>{user.firstName} {user.lastName}</Card.Text>
           <Card.Text><CalendarTodayIcon />  {date}, {time}</Card.Text>
           <Card.Text><PeopleIcon />  {guestValue} guests</Card.Text>
           <Card.Text>{restaurant.cancellationPolicy}</Card.Text>

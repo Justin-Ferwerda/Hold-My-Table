@@ -28,6 +28,8 @@ export default function Confirm() {
   };
 
   return (
-    <Confirmation {...props} />
+    <div className="reservation-confirmation">
+      <Confirmation {...props} />
+    </div>
   );
 }
