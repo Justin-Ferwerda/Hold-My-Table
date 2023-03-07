@@ -36,7 +36,7 @@ export default function ProfilePage() {
         <div className="user-past-res-w-header">
           <h3>Past Reservations</h3>
           <div className="user-past-reservations">
-            {pastReservations?.map((res) => (
+            {pastReservations?.slice(0).reverse().map((res) => (
               <UserReservation reservation={res} user={user} onUpdate={onUpdate} />
             ))}
           </div>

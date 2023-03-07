@@ -429,6 +429,14 @@ ___________________________________
   margin-left: 30px;
 }
 
+/*
+___________________________________
+
+table book now modal
+___________________________________
+*/
+
+
 .table-images-container {
   overflow-x: scroll;
   white-space: nowrap;
@@ -445,4 +453,16 @@ ___________________________________
 
 .book-table-rating {
   margin-bottom: 5px;
+}
+
+/*
+___________________________________
+
+reservation confirmation page
+___________________________________
+*/
+
+.reservation-confirmation {
+  margin: auto;
+  padding-top: 50px;
 }
