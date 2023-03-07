@@ -24,6 +24,9 @@ export default function RestaurantProfile({ restaurant }) {
           <Link href={`/restaurants/edit/${restaurant.id}`} passHref>
             <Button variant="contained">Edit Profile</Button>
           </Link>
+          <Link href={`/reservations/${restaurant.id}`} passHref>
+            <Button className="profile-layout-btn" variant="contained">Edit Layout</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>
