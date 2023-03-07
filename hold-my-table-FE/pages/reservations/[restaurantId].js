@@ -92,6 +92,9 @@ export default function ReservationPortal() {
       <div className="layout-container">
         <LayoutKey {...layoutProps} />
         <div ref={parentRef} className="table-container">
+          <div className="layout-editor-header">
+            <h3>{restaurant.name}</h3>
+          </div>
           {
         tables?.map((table) => <Table key={table.id} table={table} xCoord={table.x_coord} yCoord={table.y_coord} saveLocation={saveLocation} editMode={editMode} dateProps={dateProps} onUpdate={onUpdate} user={user} ref={parentRef} />)
       }

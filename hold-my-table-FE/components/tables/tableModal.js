@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -33,12 +34,17 @@ export default function TableModal({
         </Modal.Header>
         <Modal.Body className="tracklist-modal">
           {/* <Image src={table.restaurant.banner_pic} /> */}
-          <StarRating rating={table.rating} />
+          <StarRating className="book-table-rating" rating={table.rating} />
           <Link href={`/reviews/${table.id}`} passHref>
             <div className="review-counter">
               ({table.reviews.length}) review{table.reviews.length > 1 ? 's' : ''}
             </div>
           </Link>
+          <div className="table-images-container">
+            {table?.reviews?.map((review) => (
+              <img className="table-images" src={`http://127.0.0.1:8000${review.image}`} alt="table" />
+            ))}
+          </div>
           {!table.reserved ? <Button variant="contained" className="book-btn" onClick={sendData}>Book Now</Button> : <div />}
         </Modal.Body>
       </Modal>

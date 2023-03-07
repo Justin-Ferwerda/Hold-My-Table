@@ -10,8 +10,8 @@ UPDATE holdmytableapi_reservation
 SET user_id = 2
 WHERE id = 1
 
-DELETE FROM holdmytableapi_review
-WHERE id = 2
+DELETE FROM holdmytableapi_restaurant
+WHERE name = 'Folk'
 
-DELETE FROM holdmytableapi_reservation
-WHERE id = 28
+DELETE FROM holdmytableapi_user
+WHERE uid = 'CpdjGDG2VnPkEVRdd9vwRDAQIIo2'

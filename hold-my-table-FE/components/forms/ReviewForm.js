@@ -47,7 +47,7 @@ export default function ReviewForm({ user, table }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     createReview({ ...formData, ...rating, image }).then(() => {
-      router.push('/');
+      router.push(`/reviews/${table.id}`);
     });
   };
 

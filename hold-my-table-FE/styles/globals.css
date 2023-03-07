@@ -36,6 +36,7 @@ ________________________________
 }
 
 .footer {
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 2.5rem;
@@ -88,6 +89,10 @@ ____________________________
 
 .welcome-text {
   margin-top: 10px;
+}
+
+.featured-text:hover {
+  cursor: pointer;
 }
 
 .featured-restaurant {
@@ -237,6 +242,10 @@ __________________________________
   width: 150px;
 }
 
+.table-detail-text {
+  margin-top: 30px;
+}
+
 /* 
 _____________________________________________
 
@@ -276,12 +285,31 @@ ________________________________
 */
 
 .review-card {
-  display: flex;
-  flex-flow: row;
+  display: inline-block;
+  margin-right: 20px;
 }
 
 .review-content {
   border: none;
+}
+
+/*
+_______________________________
+
+review page
+________________________________
+
+*/
+
+.review-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-top: 30px;
+}
+
+.review-card {
+  display: inline-block;
 }
 
 /* 
@@ -399,4 +427,22 @@ ___________________________________
 
 .profile-layout-btn {
   margin-left: 30px;
+}
+
+.table-images-container {
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.table-images {
+  display: inline-block;
+  height: 150px;
+  width: 200px;
+  margin-right: 5px;
+}
+
+.book-table-rating {
+  margin-bottom: 5px;
 }
