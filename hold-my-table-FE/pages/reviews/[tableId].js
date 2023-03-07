@@ -20,9 +20,9 @@ export default function TableReviewPage() {
   }, []);
 
   return (
-    <>
+    <div className="review-container">
       {reviews?.map((review) => <ReviewCard key={review.id} review={review} onUpdate={getTheTable} />)}
-    </>
+    </div>
 
   );
 }

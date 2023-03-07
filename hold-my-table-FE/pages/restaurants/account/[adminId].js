@@ -4,7 +4,7 @@ import RestaurantReservation from '../../../components/reservations/restaurantRe
 import RestaurantProfile from '../../../components/restaurants/restaurantProfile';
 
 export default function ProfileContainer() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [restaurant, setRestaurant] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,15 @@ export default function ProfileContainer() {
           <h3>Upcoming reservations</h3>
           <div className="res-upcoming-reservations">
             {
-        restaurant?.reservations?.map((res) => <RestaurantReservation reservation={res} user={user} onUpdate={() => setRestaurant(user.adminRestaurant)} />)
+        restaurant?.reservations?.map((res) => (
+          <RestaurantReservation
+            reservation={res}
+            user={user}
+            onUpdate={() => {
+              updateUser(user.uid).then(setRestaurant(user.adminRestaurant));
+            }}
+          />
+        ))
       }
           </div>
         </div>

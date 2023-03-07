@@ -33,6 +33,9 @@ export default function LayoutKey({
             <div className="reserved-key" />
             <p>Reserved</p>
           </div>
+          <p className="table-detail-text">
+            Click on a table to view details.
+          </p>
         </>
       )}
     </div>

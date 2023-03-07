@@ -44,7 +44,7 @@ def register_user(request):
     )
 
     for style in data['styles']:
-        genre = Style.objects.get(pk=style.value)
+        genre = Style.objects.get(pk=style['value'])
         user_style = UserStyle(
         user = user,
         style = genre

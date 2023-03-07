@@ -33,6 +33,7 @@ function RegisterForm({ user, updateUser }) {
 
   const styleHandleChange = (selectedOptions) => {
     setSelected(selectedOptions);
+    console.warn(selected);
   };
 
   const handleSubmit = (e) => {
