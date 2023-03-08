@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Image } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 import CallIcon from '@mui/icons-material/Call';
 import Link from 'next/link';
+import { Button } from '@mui/material';
 
 export default function UserProfile({ user }) {
   return (
@@ -16,7 +17,7 @@ export default function UserProfile({ user }) {
           <Card.Text><CallIcon />     {user.phone}</Card.Text>
           <Image src={user.profileImageUrl} />
           <Link href={`/user/edit/${user.id}`} passHref>
-            <Button>Edit Profile</Button>
+            <Button variant="contained">Edit Profile</Button>
           </Link>
         </Card.Body>
       </Card>

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Form, FloatingLabel } from 'react-bootstrap';
 import { Button } from '@mui/material';
-import { createRestaurant, updateRestaurant } from '../../utils/data/api/restaurantData';
+import { createRestaurant, getRestaurantByCity, updateRestaurant } from '../../utils/data/api/restaurantData';
 import getStyles from '../../utils/data/api/styleData';
 import { useAuth } from '../../utils/context/authContext';
+import { useRestaurant } from '../../utils/context/restaurantContext';
 
 export default function RestaurantForm({ restaurant }) {
   const { user, updateUser } = useAuth();
@@ -15,6 +16,7 @@ export default function RestaurantForm({ restaurant }) {
   const [styles, setStyles] = useState([]);
   const router = useRouter();
   const [resId, setResId] = useState();
+  const { setRestaurants } = useRestaurant();
 
   const getTheStyles = () => {
     getStyles().then(setStyles);
@@ -36,11 +38,14 @@ export default function RestaurantForm({ restaurant }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (restaurant.id) {
-      updateRestaurant(formData).then(() => router.push(`/restaurants/account/${restaurant.adminUser.id}`));
+      updateRestaurant(formData).then(() => {
+        updateUser(user.uid).then(() => router.push(`/restaurants/account/${restaurant.adminUser.id}`));
+      });
     } else {
       createRestaurant(formData).then((res) => {
-        if (res) {
+        if (res.id) {
           setResId(res.id);
+          getRestaurantByCity('Nashville').then(setRestaurants);
           window.confirm('account created! Click Layout Design button to finish setup!');
         }
       });
@@ -48,10 +53,10 @@ export default function RestaurantForm({ restaurant }) {
   };
 
   useEffect(() => {
-    getTheStyles();
     if (restaurant.id) {
       setFormData(restaurant);
     }
+    getTheStyles();
   }, [restaurant]);
 
   return (

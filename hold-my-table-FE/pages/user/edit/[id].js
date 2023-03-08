@@ -18,7 +18,7 @@ export default function EditUserProfile() {
   return (
     <>
       <Head>
-        <title>Hold My Table - Edit User Profile</title>
+        <title>{`Hold My Table - edit ${user.firstName}'s Profile`}</title>
         <meta name="description" content="meta description for Edit Page" />
       </Head>
       <RegisterForm user={editItem} updateUser={updateUser} />

@@ -42,12 +42,13 @@ export default function ReviewForm({ user, table }) {
       ...prevState,
       [name]: value,
     }));
+    console.warn(formData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createReview({ ...formData, ...rating, image }).then(() => {
-      router.push(`/reviews/${table.id}`);
+      router.push(`/reviews/${table}`);
     });
   };
 
