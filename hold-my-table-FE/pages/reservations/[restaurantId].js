@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState, useRef } from 'react';
 import moment from 'moment/moment';
+import Head from 'next/head';
 import { getSingleRestaurant, saveTables } from '../../utils/data/api/restaurantData';
 import { useAuth } from '../../utils/context/authContext';
 import Table from '../../components/tables/table';
@@ -89,6 +90,10 @@ export default function ReservationPortal() {
 
   return (
     <>
+      <Head>
+        <title>Hold My Table - Reservations</title>
+        <meta name="description" content="meta description for Home Page" />
+      </Head>
       <div className="layout-container">
         <LayoutKey {...layoutProps} />
         <div ref={parentRef} className="table-container">

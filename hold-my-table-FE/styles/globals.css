@@ -365,6 +365,12 @@ ___________________________________
   background-color: #ADD8E6;
 }
 
+.user-profile {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 
 
 /*

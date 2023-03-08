@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Confirmation from '../../components/reservations/reservationConfirmation';
 import { getSingleRestaurant } from '../../utils/data/api/restaurantData';
 
@@ -28,8 +29,17 @@ export default function Confirm() {
   };
 
   return (
-    <div className="reservation-confirmation">
-      <Confirmation {...props} />
-    </div>
+    <>
+      <Head>
+        <title>
+          Hold My Table - Confirm
+        </title>
+        <meta name="description" content="meta description for single restaurant page" />
+      </Head>
+      <div className="reservation-confirmation">
+        <Confirmation {...props} />
+      </div>
+    </>
+
   );
 }

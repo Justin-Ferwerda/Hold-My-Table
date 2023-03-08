@@ -14,7 +14,7 @@ export default function BookTable({ restaurant }) {
               Hold My Table offers a one of a kind reservation booking experience. HMT allows you to choose any table in the restaurant. This way, you’re ensured a dining experience to remember!
             </Card.Text>
             <Card.Text>
-              Check out our reservation portal <Link className="portal-link" href={`/reservations/${restaurant.id}`} passHref>Here</Link>
+              Check out our reservation portal <Link className="portal-link" href={`/reservations/${restaurant.id}`} passHref>here</Link>
             </Card.Text>
           </Card.Body>
         </Card>

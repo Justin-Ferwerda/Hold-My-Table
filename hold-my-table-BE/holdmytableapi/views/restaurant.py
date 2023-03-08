@@ -27,7 +27,7 @@ class RestaurantView(ViewSet):
 
             request_date = datetime(int(year), int(month), int(day), int(hour), int(minutes), int(seconds))
 
-            if datetime.now() > request_date:
+            if datetime.now() >= request_date:
                 return Response({'message': 'Please Pick a a Date in the Future!'}, status.HTTP_403_FORBIDDEN)
 
             else:
@@ -81,7 +81,7 @@ class RestaurantView(ViewSet):
     def update(self, request, pk):
         """handles update request for restaurants"""
         data = camel_case_to_snake_case(request.data)
-        style = Style.objects.get(pk=data['style']['id'])
+        style = Style.objects.get(pk=data['style'])
         restaurant = Restaurant.objects.get(pk=pk)
 
         restaurant.name = data['name']
