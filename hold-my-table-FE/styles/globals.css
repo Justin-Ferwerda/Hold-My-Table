@@ -124,9 +124,7 @@ _____________________________
 
 
 .table {
-  display: flex;
   background-color: lightblue;
-  justify-content: space-evenly;
   position: relative;
 }
 
@@ -179,6 +177,7 @@ __________________________________
   width: 75vw;
   border: 1px solid black;
   margin: 25px;
+  text-align: center;
 }
 
 .layout-key {
@@ -291,6 +290,10 @@ ________________________________
 
 .review-content {
   border: none;
+}
+
+.review-res-name:hover {
+  cursor: pointer;
 }
 
 /*

@@ -12,6 +12,7 @@ export default function TableReviewPage() {
   const getTheTable = () => {
     getSingleTable(tableId).then((res) => {
       setReviews(res.reviews);
+      console.warn(res.reviews);
     });
   };
 

@@ -36,7 +36,12 @@ export default function Confirmation({
   };
 
   const handleClick = () => {
-    createReservation(payload).then(() => updateUser(user.uid)).then(() => router.push(`/user/${user.id}`));
+    createReservation(payload).then((res) => {
+      if (res.id) {
+        alert('Thank you! You should receive a confirmation email shortly!');
+        updateUser(user.uid).then(() => router.push(`/user/${user.id}`));
+      }
+    });
   };
 
   return (

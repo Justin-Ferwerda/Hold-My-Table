@@ -9,6 +9,7 @@ import Seat from './seat';
 import TableModal from './tableModal';
 import AddTableModal from './addTableModal';
 import { deleteTable } from '../../utils/data/api/tableData';
+import StarRating from '../utility/StarRating';
 
 const Table = React.forwardRef(({
   table, xCoord, yCoord, saveLocation, editMode, dateProps, onUpdate, user,
@@ -70,6 +71,7 @@ const Table = React.forwardRef(({
           </IconButton>
         </div>
       ) : <TableModal show={show} handleClose={() => setShow(false)} table={table} dateProps={dateProps} />}
+      <StarRating rating={table.rating} className="table-star-rating" />
     </animated.div>
 
   );
