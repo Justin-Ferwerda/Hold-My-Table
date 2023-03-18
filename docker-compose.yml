@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  api:
+    build: ./hold-my-table-BE
+    container_name: API
+    ports:
+      - "8000:8000"
+    command: sh -c "python manage.py migrate && python manage.py loaddata styles && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./hold-my-table-BE:/hold-my-table-BE 
+
+  web:
+    build: ./hold-my-table-FE
+    container_name: web
+    ports:
+      - 3000:3000
