@@ -35,7 +35,7 @@ class ReviewSerializer(ModelSerializer):
         """fields"""
         model = Review
         fields = ('id', 'user', 'table', 'rating', 'content', 'image')
-        depth = 1
+        depth = 2
 
 class TableSerializer(ModelSerializer):
     """table serializer"""

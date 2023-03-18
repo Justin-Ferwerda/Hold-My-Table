@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from rest_framework import routers
-from holdmytableapi.views import check_user, register_user, UserView, RestaurantView, StyleView, TableView, ReservationView, ReviewView
+from holdmytableapi.views import check_user, register_user, UserView, RestaurantView, StyleView, TableView, ReservationView, ReviewView, EmailView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
@@ -29,6 +29,7 @@ router.register(r'styles', StyleView, 'style')
 router.register(r'tables', TableView, 'table')
 router.register(r'reservations', ReservationView, 'reservation')
 router.register(r'reviews', ReviewView, 'review')
+router.register(r'emails', EmailView, 'email')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

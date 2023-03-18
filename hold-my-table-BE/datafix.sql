@@ -11,7 +11,7 @@ SET user_id = 2
 WHERE id = 1
 
 DELETE FROM holdmytableapi_restaurant
-WHERE name = 'Folk'
+WHERE id = 23
 
 DELETE FROM holdmytableapi_user
 WHERE uid = 'CpdjGDG2VnPkEVRdd9vwRDAQIIo2'

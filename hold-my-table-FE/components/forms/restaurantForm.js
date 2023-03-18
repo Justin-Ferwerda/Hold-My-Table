@@ -32,7 +32,6 @@ export default function RestaurantForm({ restaurant }) {
       ...prevState,
       [name]: value,
     }));
-    console.warn(formData);
   };
 
   const handleSubmit = (e) => {

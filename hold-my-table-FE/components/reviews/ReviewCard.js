@@ -10,6 +10,7 @@ import { Avatar } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import Link from 'next/link';
 import StarRating from '../utility/StarRating';
 import { useAuth } from '../../utils/context/authContext';
 import { deleteReview, updateReview } from '../../utils/data/api/reviewData';
@@ -65,6 +66,9 @@ export default function ReviewCard({ review, onUpdate }) {
         <img src={`http://127.0.0.1:8000${review.image}`} />
         <Card.Body className="review-card-body">
           <Avatar src={review.user.profile_image_url} />
+          <Link href={`/restaurants/${review.table.restaurant.id}`} passHref>
+            <Card.Text className="review-res-name"><strong>{review.table.restaurant.name}</strong></Card.Text>
+          </Link>
           <Card.Text>{review.user.first_name} {review.user.last_name}</Card.Text>
           <StarRating rating={review.rating} readonly={readonly} handleRating={handleRating} />
           <Form.Control
@@ -100,6 +104,12 @@ export default function ReviewCard({ review, onUpdate }) {
 
 ReviewCard.propTypes = {
   review: PropTypes.shape({
+    table: PropTypes.shape({
+      restaurant: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    }),
     id: PropTypes.number,
     image: PropTypes.string,
     rating: PropTypes.number,
