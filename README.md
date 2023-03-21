@@ -24,14 +24,41 @@ The easiest way to get this project running locally is to utilize the Docker con
 
 ### User Features
 
-Users can look up a restaurant and view details about the restaurant such as website, instagram, and also see price point and rating. From this page they can also click on the reservation portal.
+**Users can look up a restaurant and view details about the restaurant such as website, instagram, and also see price point and rating. From this page they can also click on the reservation portal.**
 
 ![restaurant page](/hold-my-table-FE/public/images/single-restaurant-page.png)
 
-Here is the reservation portal. Users can pick a table, see information about it and find out when a specific table is available
+**Here is the reservation portal. Users can pick a table, see information about it and find out when a specific table is available.**
 
 ![reservation portal](/hold-my-table-FE/public/images/reservationPortal.png)
 
-Users can manage their upcoming reservations, and leave reviews on past reservations.
+**Users can manage their upcoming reservations, and leave reviews on past reservations.**
 
 ![user profile](/hold-my-table-FE/public/images/user-profile.png)
+
+### Admin Features
+
+**The Main Feature for restaurant admins is designing a custom table layout to match your footprint. Users can add tables, and then drag and drop them anywhere in the window to create their layout.**
+
+![Table Layout](/hold-my-table-FE/public/images/Table%20Layout.png)
+
+**Admins can manage their reservations and contact users about their reservations as well.**
+
+![Admin Profile](/hold-my-table-FE/public/images/Admin%20Profile.png)
+
+### Other Features
+
+* Users Can leave reviews on tables they've reserved w/ pictures uploaded from their device
+* Users can email the restaurant directly w/ questions about their reservation
+* Users will receive a confirmation email when successfully booking a reservation
+* Users can edit or delete their profile, reviews, or reservations
+* Restaurant Admins can email the reservation user directly
+* Restaurant Admins can edit their profile
+
+## ERD
+
+![ERD](/hold-my-table-FE/public/images/ERD.png)
+
+## Loom Video
+
+Coming Soon!
