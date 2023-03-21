@@ -19,3 +19,19 @@ You will need to utilize Firebase to enable Google Authentication.
 The easiest way to get this project running locally is to utilize the Docker containerization I have done.
 
 [Installation using Docker](/DockerInstallation.md)
+
+## Select Features
+
+### User Features
+
+Users can look up a restaurant and view details about the restaurant such as website, instagram, and also see price point and rating. From this page they can also click on the reservation portal.
+
+![restaurant page](/hold-my-table-FE/public/images/single-restaurant-page.png)
+
+Here is the reservation portal. Users can pick a table, see information about it and find out when a specific table is available
+
+![reservation portal](/hold-my-table-FE/public/images/reservationPortal.png)
+
+Users can manage their upcoming reservations, and leave reviews on past reservations.
+
+![user profile](/hold-my-table-FE/public/images/user-profile.png)
