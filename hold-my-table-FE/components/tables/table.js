@@ -32,7 +32,7 @@ const Table = React.forwardRef(({
     onDragEnd: editMode ? () => {
       saveLocation(table.id, { x, y });
     } : () => null,
-    onMouseDown: !editMode ? () => {
+    onMouseDown: !editMode && user.id !== table.restaurant.admin_user ? () => {
       setShow(true);
     } : () => null,
   }, {

@@ -98,7 +98,7 @@ export default function RestaurantForm({ restaurant }) {
 
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Short Bio</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={handleChange} name="cancellationPolicy" value={formData.bio} />
+            <Form.Control as="textarea" rows={3} onChange={handleChange} name="bio" value={formData.bio} />
           </Form.Group>
           <FloatingLabel controlId="floatingSelect" label="style">
             <Form.Select aria-label="style" name="style" onChange={handleChange} className="mb-3" value={formData?.style?.id} required>

@@ -275,6 +275,10 @@ ______________________________________________
   margin-right: 6px;
 }
 
+.review-counter {
+  margin-left: 5px;
+}
+
 /*
 _______________________________
 
@@ -296,6 +300,11 @@ ________________________________
   cursor: pointer;
 }
 
+.no-reviews {
+  text-align: center;
+  padding-top: 100px;
+}
+
 /*
 _______________________________
 
@@ -305,10 +314,12 @@ ________________________________
 */
 
 .review-container {
+  display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   margin-top: 30px;
+  align-items: center;
 }
 
 .review-card {

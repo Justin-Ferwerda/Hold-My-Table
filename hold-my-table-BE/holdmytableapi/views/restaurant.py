@@ -92,6 +92,7 @@ class RestaurantView(ViewSet):
         restaurant.instagram = data['instagram']
         restaurant.banner_pic = data['banner_pic']
         restaurant.cancellation_policy = data['cancellation_policy']
+        restaurant.bio = data['bio']
         restaurant.style = style
 
         restaurant.save()
