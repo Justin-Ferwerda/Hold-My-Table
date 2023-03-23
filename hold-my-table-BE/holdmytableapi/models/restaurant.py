@@ -49,3 +49,12 @@ class Restaurant(models.Model):
         """past reservations"""
         reservations = [reservation for table in self.tables.all() for reservation in table.reservations if datetime.now() > reservation.date]
         return reservations
+
+    @property
+    def reviews(self):
+        """all table reviews"""
+        reviews = []
+        tables = [table for table in self.tables.all()]
+        for table in tables:
+            reviews += table.reviews
+        return reviews

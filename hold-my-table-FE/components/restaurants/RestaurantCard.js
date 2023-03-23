@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LanguageIcon from '@mui/icons-material/Language';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import Link from 'next/link';
 import StarRating from '../utility/StarRating';
 
 export default function RestaurantCard({ restaurant, src }) {
@@ -25,6 +26,11 @@ export default function RestaurantCard({ restaurant, src }) {
             </p>
             <div className="r-rating">
               <div className="r-rating-number">{restaurant.rating}</div>  <StarRating rating={restaurant.rating} />
+              <Link href={`/reservations/${restaurant.id}`} passHref>
+                <div className="review-counter">
+                  ({restaurant?.reviews?.length}) review{restaurant?.reviews?.length === 1 ? '' : 's'}
+                </div>
+              </Link>
             </div>
             <p className="card-text r-style">{restaurant?.style?.label}</p>
             <p>{restaurant.priceTier}</p>
@@ -37,6 +43,7 @@ export default function RestaurantCard({ restaurant, src }) {
 
 RestaurantCard.propTypes = {
   restaurant: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     style: PropTypes.shape({
       label: PropTypes.string,
@@ -47,6 +54,7 @@ RestaurantCard.propTypes = {
     websiteUrl: PropTypes.string,
     priceTier: PropTypes.string,
     rating: PropTypes.number,
+    reviews: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
   src: PropTypes.string.isRequired,
 };

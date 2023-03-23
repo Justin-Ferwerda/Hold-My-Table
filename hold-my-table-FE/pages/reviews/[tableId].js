@@ -21,9 +21,13 @@ export default function TableReviewPage() {
   }, []);
 
   return (
-    <div className="review-container">
-      {reviews?.map((review) => <ReviewCard key={review.id} review={review} onUpdate={getTheTable} />)}
-    </div>
+    reviews.length ? (
+      <div className="review-container">
+        {reviews?.map((review) => <ReviewCard key={review.id} review={review} onUpdate={getTheTable} />)}
+      </div>
+    ) : (
+      <h1 className="no-reviews">no reviews yet, check back soon!</h1>
+    )
 
   );
 }
